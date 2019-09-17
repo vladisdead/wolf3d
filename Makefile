@@ -6,7 +6,7 @@
 #    By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/10 16:25:58 by cmicha            #+#    #+#              #
-#    Updated: 2019/09/16 12:44:52 by cmicha           ###   ########.fr        #
+#    Updated: 2019/09/17 09:25:52 by cmicha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME	= wolf3d
 
 # src / obj files
 SRC		= main.c \
+		  sdl_init.c \
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
