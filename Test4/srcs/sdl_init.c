@@ -21,8 +21,9 @@ t_sdl	sdl_init(void)
         ft_putendl("Error");
     }
     if (!(sdl.win = SDL_CreateWindow("Wolf3D", SDL_WINDOWPOS_CENTERED,
-                                     SDL_WINDOWPOS_CENTERED, 500, 500,
+                                     SDL_WINDOWPOS_CENTERED, 1000, 800,
                                      SDL_WINDOW_SHOWN)))
         ft_putendl("Error WIN");
+    return (sdl);
 }
 

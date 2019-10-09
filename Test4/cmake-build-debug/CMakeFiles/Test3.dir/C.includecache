@@ -22,7 +22,7 @@ string.h
 unistd.h
 -
 
-F:/Proggs/CLionProj/Test4/srcs/keyhook.c
+F:/Proggs/CLionProj/Test4/srcs/sdl_init.c
 ../includes/wolf3d.h
 F:/Proggs/CLionProj/Test4/includes/wolf3d.h
 

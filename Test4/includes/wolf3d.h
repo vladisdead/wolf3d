@@ -33,12 +33,18 @@ typedef struct		s_sdl
 	t_point			point;
 }					t_sdl;
 
-void				quit(t_sdl *q);
+typedef struct      s_wolf
+{
+    t_sdl           sdl;
+
+}                   t_wolf;
+
+void				quit(t_wolf *wolf);
 t_sdl				sdl_init(void);
-void                sdl_loop(t_sdl *sdl);
-void                eventintg(t_sdl *sdl, SDL_Event event);
-void                hook_keydown(t_sdl *sdl, SDL_Event event);
-void                sdl_clean(t_sdl *sdl);
+void                sdl_loop(t_wolf *wolf);
+void                eventintg(t_wolf *wolf, SDL_Event event);
+void                hook_keydown(t_wolf *sdl, SDL_Event event);
+void                sdl_clean(t_wolf *wolf);
 
 
 #endif

@@ -12,8 +12,8 @@
 
 #include "../includes/wolf3d.h"
 
-void    hook_keydown(t_sdl *sdl, SDL_Event event)
+void    hook_keydown(t_wolf *wolf, SDL_Event event)
 {
     if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-        quit(sdl);
+        quit(wolf);
 }

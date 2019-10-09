@@ -12,24 +12,24 @@
 
 #include "../includes/wolf3d.h"
 
-void    sdl_clean(t_sdl *sdl)
+void    sdl_clean(t_wolf *wolf)
 {
-    SDL_DestroyWindow(sdl->win);
+    SDL_DestroyWindow(wolf->sdl.win);
     SDL_Quit();
 }
 
-void	quit(t_sdl *q)
+void	quit(t_wolf *wolf)
 {
-	sdl_clean(q);
+	sdl_clean(wolf);
 	exit(0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_sdl			sdl;
+	t_wolf		    wolf;
     SDL_Event       event;
-	sdl = sdl_init();
-	sdl.q = 0;
-	sdl_loop(&sdl);
+	wolf.sdl = sdl_init();
+	wolf.sdl.q = 0;
+	sdl_loop(&wolf);
 	return (0);
 }

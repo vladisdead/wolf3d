@@ -12,20 +12,20 @@
 
 #include "../includes/wolf3d.h"
 
-void    eventintg(t_sdl *sdl, SDL_Event event)
+void    eventintg(t_wolf *wolf, SDL_Event event)
 {
     if (event.type == SDL_KEYDOWN)
-        hook_keydown(sdl, event);
+        hook_keydown(wolf, event);
 }
 
-void    sdl_loop(t_sdl *sdl)
+void    sdl_loop(t_wolf*wolf)
 {
     SDL_Event event;
 
-    while(sdl->q != 1)
+    while(wolf->sdl.q != 1)
     {
         while (SDL_PollEvent(&event))
-            eventintg(sdl, event);
+            eventintg(wolf, event);
         if (event.type == SDL_QUIT)
             break;
     }
