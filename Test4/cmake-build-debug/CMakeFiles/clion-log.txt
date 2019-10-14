@@ -1,4 +1,4 @@
-"F:\Proggs\CLion 2019.1.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" F:\Proggs\CLionProj\Test4
+/private/var/folders/zz/zyxvpxvq6csfxvn_n00014cc000933/T/AppTranslocation/83A84E40-2107-4056-9D35-19205A2236EA/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/cmicha/Desktop/dada/wolf3d/Test4
 -- Configuring done
 -- Generating done
--- Build files have been written to: F:/Proggs/CLionProj/Test4/cmake-build-debug
+-- Build files have been written to: /Users/cmicha/Desktop/dada/wolf3d/Test4/cmake-build-debug

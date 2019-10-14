@@ -1,14 +1,18 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.13)
+
 project(wolf3d C)
 
-set(CMAKE_C_STANARD 1)
-set(FLAGS "-O2")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FLAGS}")
-set(libft_inc
-        libft/)
-link_directories(libft/)
-find_package(SDL2 REQUIRED)
-include_directories(${SDL_INCLUDE_DIR} includes/${CMAKE_CURRENT_BINARY_DIR} includes/${CMAKE_CURRENT_SOURCE_DIR})
+set(CMAKE_C_STANDARD 11)
+set(MY_CFLAGS "-O2")
+set (libft_inc libft/)
+set (SDL_inc SDL2/)
 
-add_executable(Test3 srcs/main.c srcs/sdl_init.c srcs/sdl_loop.c srcs/keyhook.c)
-target_link_libraries(Test3 ${SDL_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -llibft)
+include_directories("includes")
+include_directories("libft")
+include_directories("SDL2")
+
+link_directories(libft/ SDL2/lib/)
+
+add_executable(wolf3d srcs/bresenham.c srcs/main.c srcs/reader.c srcs/sdl_init.c srcs/map_init.c srcs/color.c srcs/init)
+
+target_link_libraries(wolf3d "SDL2" "ft")

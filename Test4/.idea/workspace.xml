@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="wolf3d" targetName="Test3" />
+      <config projectName="wolf3d" targetName="wolf3d" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -11,8 +11,163 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67556064-f7fd-4b7d-8433-4c74c6d23a88" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <list default="true" id="67556064-f7fd-4b7d-8433-4c74c6d23a88" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/wolf3d.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_assert.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_atomic.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_audio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_bits.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_blendmode.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_clipboard.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_config.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_cpuinfo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_egl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_endian.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_error.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_events.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_filesystem.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_gamecontroller.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_gesture.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_haptic.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_hints.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_joystick.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_keyboard.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_keycode.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_loadso.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_log.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_main.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_messagebox.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_mouse.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_mutex.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_name.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengl_glext.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengles.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengles2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengles2_gl2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengles2_gl2ext.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengles2_gl2platform.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_opengles2_khrplatform.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_pixels.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_platform.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_power.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_quit.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_rect.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_render.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_revision.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_rwops.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_scancode.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_sensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_shape.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_stdinc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_surface.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_system.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_syswm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_assert.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_common.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_compare.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_crc32.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_font.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_fuzzer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_harness.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_images.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_log.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_md5.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_memory.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_test_random.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_thread.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_timer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_touch.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_types.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_video.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/SDL_vulkan.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/begin_code.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/close_code.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/lib/cmake/SDL2/sdl2-config.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/lib/libSDL2-2.0.0.dylib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/lib/libSDL2.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/lib/libSDL2.dylib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/lib/libSDL2_test.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/lib/libSDL2main.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDL2/lib/pkgconfig/sdl2.pc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists(windows).txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CompilerIdC/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.2/CompilerIdCXX/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/C.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/linklibs.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/main.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/objects.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/objects1.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project1.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/C.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/includes_C.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/linklibs.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/objects.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/objects1.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/srcs/keyhook.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/srcs/main.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/srcs/sdl_init.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test3.dir/srcs/sdl_loop.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/linklibs.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/objects1.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Test4.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/wolf.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/wolf.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/wolf3d.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/wolf3d.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/wolf3d.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/wolf3d.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/keyhook.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/sdl_init.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/sdl_init.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/sdl_loop.c" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,117 +192,20 @@
     <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/srcs/sdl_init.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="23" column="68" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/srcs/main.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/srcs/sdl_loop.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/srcs/keyhook.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/wolf3d.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
-              <folding>
-                <element signature="e#926#948#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FindInProjectRecents">
     <dirStrings>
       <dir>F:\Proggs\CLionProj\Test4</dir>
     </dirStrings>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/main.c" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/includes/wolf3d.h" />
-        <option value="$PROJECT_DIR$/srcs/sdl_loop.c" />
-        <option value="$PROJECT_DIR$/srcs/keyhook.c" />
-        <option value="$PROJECT_DIR$/srcs/main.c" />
-        <option value="$PROJECT_DIR$/srcs/sdl_init.c" />
-      </list>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="wolf3d" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Test4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wolf3d" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Test4" type="462c0819:PsiDirectoryNode" />
-              <item name="srcs" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
+  <component name="ProjectId" id="1SBmtDQdz4V4qI2xzeGXrUJ7Ehf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cmake-build-debug" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
@@ -165,7 +223,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Test3" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="wolf3d" TARGET_NAME="Test3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="wolf3d" RUN_TARGET_NAME="Test3">
+    <configuration name="wolf3d" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;map.wolf3d&quot;" PASS_PARENT_ENVS_2="true" PROJECT_NAME="wolf3d" TARGET_NAME="wolf3d" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="wolf3d" RUN_TARGET_NAME="wolf3d">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -184,88 +242,27 @@
       <workItem from="1564863408885" duration="521000" />
       <workItem from="1570524044960" duration="6938000" />
       <workItem from="1570610784528" duration="6442000" />
+      <workItem from="1571045577369" duration="1478000" />
+      <workItem from="1571047511921" duration="128000" />
+      <workItem from="1571048371373" duration="1296000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13901000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.26805252" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32719395" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32827735" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.32932165" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.c" />
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/wolf3d.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
-          <folding>
-            <element signature="e#926#948#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srcs/keyhook.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srcs/sdl_init.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="68" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srcs/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srcs/sdl_loop.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="masterDetails">
     <states>

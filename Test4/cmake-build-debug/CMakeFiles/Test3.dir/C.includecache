@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-F:/Proggs/CLionProj/Test4/includes/wolf3d.h
-SDL2/SDL.h
-F:/Proggs/CLionProj/Test4/includes/SDL2/SDL.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/includes/wolf3d.h
+../SDL2/SDL.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/SDL2/SDL.h
 ../libft/libft.h
-F:/Proggs/CLionProj/Test4/libft/libft.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/libft/libft.h
 stdlib.h
 -
 
-F:/Proggs/CLionProj/Test4/libft/libft.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/libft/libft.h
 stdlib.h
 -
 string.h
@@ -22,7 +22,19 @@ string.h
 unistd.h
 -
 
-F:/Proggs/CLionProj/Test4/srcs/sdl_init.c
+/Users/cmicha/Desktop/dada/wolf3d/Test4/srcs/keyhook.c
 ../includes/wolf3d.h
-F:/Proggs/CLionProj/Test4/includes/wolf3d.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/includes/wolf3d.h
+
+/Users/cmicha/Desktop/dada/wolf3d/Test4/srcs/main.c
+../includes/wolf3d.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/includes/wolf3d.h
+
+/Users/cmicha/Desktop/dada/wolf3d/Test4/srcs/sdl_init.c
+../includes/wolf3d.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/includes/wolf3d.h
+
+/Users/cmicha/Desktop/dada/wolf3d/Test4/srcs/sdl_loop.c
+../includes/wolf3d.h
+/Users/cmicha/Desktop/dada/wolf3d/Test4/includes/wolf3d.h
 

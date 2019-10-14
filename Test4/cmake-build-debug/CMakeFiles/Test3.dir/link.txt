@@ -1,3 +1,1 @@
-"F:\Proggs\CLion 2019.1.1\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\Test3.dir/objects.a
-F:\Proggs\MiniGW\mingw64\bin\ar.exe cr CMakeFiles\Test3.dir/objects.a @CMakeFiles\Test3.dir\objects1.rsp
-F:\Proggs\MiniGW\mingw64\bin\gcc.exe  -O2 -g   -Wl,--whole-archive CMakeFiles\Test3.dir/objects.a -Wl,--no-whole-archive  -o Test3.exe -Wl,--out-implib,libTest3.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Test3.dir\linklibs.rsp
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -O2 -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Test3.dir/srcs/main.c.o CMakeFiles/Test3.dir/srcs/sdl_init.c.o CMakeFiles/Test3.dir/srcs/sdl_loop.c.o CMakeFiles/Test3.dir/srcs/keyhook.c.o  -o Test3  -L/Users/cmicha/Desktop/dada/wolf3d/Test4/libft -Wl,-rpath,/Users/cmicha/Desktop/dada/wolf3d/Test4/libft -lmingw32 -lSDL2main -lSDL2 -llibft 

@@ -6,30 +6,36 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 12:43:55 by cmicha            #+#    #+#             */
-/*   Updated: 2019/09/17 09:54:35 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/10/14 11:42:19 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf3d.h"
+#include "wolf3d.h"
 
-void    sdl_clean(t_wolf *wolf)
+void	quit(t_sdl *q)
 {
-    SDL_DestroyWindow(wolf->sdl.win);
-    SDL_Quit();
+	SDL_DestroyRenderer(q->ren);
+	SDL_DestroyWindow(q->win);
+	SDL_Quit();
 }
 
-void	quit(t_wolf *wolf)
+int		main(int argc, char **argv)
 {
-	sdl_clean(wolf);
-	exit(0);
+	t_sdl			sdl;
+	t_p				player;
+
+	sdl.reader.nameof = argv[1];
+	sdl.reader.fd = open(argv[1], O_RDONLY);
+	player_init(player);
+	if (parser(&sdl.reader) == -1)
+	{
+		ft_putendl("Check map for errors!");
+		return (0);
+	}
+	get_z(&sdl.reader);
+	sdl = sdl_init();
+	sdl_loop(&sdl);
+	quit(&sdl);
+	return (1);
 }
 
-int	main(int argc, char **argv)
-{
-	t_wolf		    wolf;
-    SDL_Event       event;
-	wolf.sdl = sdl_init();
-	wolf.sdl.q = 0;
-	sdl_loop(&wolf);
-	return (0);
-}
