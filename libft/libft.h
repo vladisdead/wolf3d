@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 18:54:08 by mriley            #+#    #+#             */
-/*   Updated: 2019/06/10 16:31:51 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/10/16 12:43:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ int					ft_memcmp(const void *m1, const void *m2, size_t num);
 char				*ft_itoa(int n);
 int					ft_atoi(const char *str);
 int					get_next_line(const int fd, char **line);
+void				ft_memswap(void *a, void *b, size_t n);
 
 #endif

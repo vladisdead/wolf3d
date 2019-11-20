@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="FUCK"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\Proggs\;CMake Files\Proggs\MiniGW\;CMake Files\Proggs\MiniGW\mingw64\;CMake Files\Proggs\MiniGW\mingw64\lib\;CMake Files\Proggs\MiniGW\mingw64\lib\cmake\;CMake Files\Proggs\MiniGW\mingw64\lib\cmake\SDL2\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Vlad/Desktop/FUCK/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FUCK">
+				<Option output="C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/FUCK.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Vlad/Desktop/FUCK/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/SDL2"/>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/includes"/>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/libft"/>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/libgm/include"/>
+					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 FUCK"/>
+					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FUCK/fast">
+				<Option output="C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/FUCK.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Vlad/Desktop/FUCK/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/SDL2"/>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/includes"/>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/libft"/>
+					<Add directory="C:/Users/Vlad/Desktop/FUCK/libgm/include"/>
+					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 FUCK/fast"/>
+					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Vlad/Desktop/FUCK/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Vlad/Desktop/FUCK/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Vlad/Desktop/FUCK/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Vlad/Desktop/FUCK/main.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="C:/Users/Vlad/Desktop/FUCK/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/Vlad/Desktop/FUCK/Proggs/MiniGW/mingw64/lib/cmake/SDL2/sdl2-config.cmake">
+			<Option virtualFolder="CMake Files\Proggs\MiniGW\mingw64\lib\cmake\SDL2\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

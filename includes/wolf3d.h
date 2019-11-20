@@ -1,40 +1,135 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 12:11:30 by cmicha            #+#    #+#             */
-/*   Updated: 2019/09/17 09:38:37 by cmicha           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef WOLF3D_H
-# define WOLF3D_H
-# include "SDL.h"
+# define WOLF3D_h
 # include "libft.h"
+# include "SDL.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <string.h>
+# include <stdio.h>
+# include <math.h>
+# include <dirent.h>
+# define MOVE_SPEED_MODIFIER 5.0
+# define ROT_SPEED_MODIFIER 3.0
+# define WINDW_H 900
+# define WINDW_W 900
+# define SCREEN_FPS 60
+#define mapWidth 24
+#define mapHeight 24
+# define SCREEN_TICKS_PER_FRAME 1000 / SCREEN_FPS
+# define TEXT_W 64
+# define TEXT_H 64
+# define MAX_FPS 60
 
-typedef	struct		s_point
+typedef struct s_color_sdl
 {
-	int				x;
-	int				y;
-}					t_point;
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+    unsigned char a;
+}               t_color_sdl;
 
-typedef struct		s_sdl
+typedef struct		s_wolf_raycaster
 {
-	SDL_DisplayMode	displaymode;
-	SDL_Window		*win;
-	SDL_Renderer	*ren;
-	SDL_Event		ev;
-	SDL_Surface		*screen_surface;
-	SDL_Surface		*anime;
-	SDL_Rect		r;
-	int				q;
-	t_point			point;
-}					t_sdl;
+    double			planex;
+    double			planey;
+    double			camerax;
+    double			rayposx;
+    double			rayposy;
+    int             x;
+    int             y;
+    double			raydirx;
+    double			raydiry;
+    int				mapx;
+    int				mapy;
+    double			sidedistx;
+    double			sidedisty;
+    double			deltadistx;
+    double			deltadisty;
+    double			perpwalldist;
+    int				stepx;
+    int				stepy;
+    int				hit;
+    int				side;
+    int				lineheight;
+    int				drawstart;
+    int				drawend;
+    double          posx;
+    double          posy;
+    double          dirx;
+    double          diry;
+    double          time;
+    double          oldtime;
+    double          ms;
+    double          rs;
+    double          move_up;
+    double          move_down;
+    double          move_left;
+    double          move_right;
+    double          olddirx;
+    double          olddiry;
+    double          oldplanex;
+    double          w_h;
+    double          w_w;
+    double          oldplaney;
+    t_color_sdl             color;
+    t_color_sdl     sight;
+}					t_wolf_raycaster;
 
-void				quit(t_sdl *q);
-t_sdl				*sdl_init(void);
-void				load_texture(t_sdl *sdl);
+typedef struct		s_wolf_player
+{
+    double			x;
+    double			y;
+    double			dirx;
+    double			diry;
+    double			movespeed;
+    double			rotspeed;
+    char			isrunning;
+}                   t_wolf_player;
+
+typedef struct		s_wolf_m3d
+{
+    char			**map;
+    char			name[1024];
+}					t_wmap;
+
+typedef struct		s_wolf
+{
+    SDL_Window		*pwindow;
+    SDL_Renderer	*renderer;
+    int				frame;
+    t_wmap			*map;
+    t_wolf_player		player;
+    t_wolf_raycaster	raycaster;
+    SDL_Texture		*texture;
+    SDL_Texture		*skybox;
+    SDL_Surface     *surf;
+    double			frametime;
+    char			quit;
+    int				mousex;
+    int				mousey;
+}					t_wolf;
+
+
+
+typedef struct  s_point
+{
+    int x;
+    int y;
+    int z;
+    int color;
+}               t_point;
+
+typedef struct			s_line
+{
+    t_point				start;
+    t_point				end;
+    t_point				point;
+    t_point				delta;
+    int					steep;
+    int					error;
+    int					ystep;
+}                       t_line;
+
 #endif
