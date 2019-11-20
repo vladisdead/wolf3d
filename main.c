@@ -65,197 +65,6 @@ static void	wolf3d_key_right(t_wolf *wolf)
     wolf->raycaster.planey = wolf->raycaster.oldplanex * sin(wolf->raycaster.rs * -1) + wolf->raycaster.planey * cos(wolf->raycaster.rs * -1);
 }
 
-int		readfile(char *file, char *buffer)
-{
-    int		fd;
-    int		i;
-
-    if ((fd = open(file, O_RDONLY)) == -1)
-    {
-        perror(strerror(errno));
-        return (-1);
-    }
-    i = 0;
-    while ((read(fd, buffer + i, sizeof(buffer))) != 0)
-        i += sizeof(buffer);
-    buffer[i] = '\0';
-    buffer[i + 1] = '\0';
-    close(fd);
-    return (0);
-}
-
-
-t_wmap		*wolf3d_map_create(void)
-{
-    t_wmap		*map;
-
-    if (!(map = (t_wmap *)ft_memalloc(sizeof(t_wmap))))
-        return (NULL);
-    map->map = NULL;
-    return (map);
-}
-
-int			wolf3d_map_copy(t_wmap *map, char *buffer)
-{
-    int i;
-    int j;
-    int k;
-
-    i = 0;
-    j = 0;
-    k = 0;
-    while (buffer[i] != '\0')
-    {
-        if (buffer[i] == '\n')
-        {
-            if (!(map->map[j] = (char *)ft_memalloc(sizeof(char) * (k + 1))))
-                return (-1);
-            strncpy(map->map[j], buffer + (i - k), k);
-            map->map[j][k] = '\0';
-            k = -1;
-            j++;
-        }
-        i++;
-        k++;
-    }
-    return (1);
-}
-
-int			wolf3d_init_map(t_wmap *map, char *buffer)
-{
-    int		i;
-    int		n;
-
-    i = 0;
-    n = 0;
-    if (!buffer || buffer[0] == 0)
-        return (-1);
-    if (!map)
-        return (-1);
-    while (buffer[i] != '\0')
-    {
-        if (buffer[i] == '\n')
-            n++;
-        i++;
-    }
-    if (!(map->map = (char **)ft_memalloc(sizeof(char *) * (n + 1))))
-        return (-1);
-    map->map[n] = NULL;
-    wolf3d_map_copy(map, buffer);
-    return (1);
-}
-
-void		wolf3d_map_destroy(t_wmap *map)
-{
-    int		i;
-
-    i = 0;
-    while (map->map[i])
-    {
-        free(map->map[i]);
-        map->map[i] = NULL;
-        i++;
-    }
-    free(map->map[i]);
-    map->map[i] = NULL;
-    free(map->map);
-    map->map = NULL;
-    free(map);
-    map = NULL;
-}
-
-static int			wolf3d_load_skybox(t_wolf *wolf)
-{
-    SDL_Surface		*skybox_bmp;
-
-
-    skybox_bmp = SDL_LoadBMP("../img/skybox.bmp");
-    if (skybox_bmp == NULL)
-        return (-1);
-    printf("Texture loaded.\n");
-    wolf->skybox = SDL_CreateTextureFromSurface(wolf->renderer, skybox_bmp);
-    SDL_FreeSurface(skybox_bmp);
-
-    return (1);
-}
-
-int					wolf3d_load_map(t_wolf *wolf, char *path)
-{
-    char			buffer[1024];
-
-    if (path == NULL || !path[0])
-        return (-1);
-    ft_bzero(buffer, 1024);
-    if (wolf->map && wolf->map->map != NULL)
-    {
-        wolf3d_map_destroy(wolf->map);
-        wolf->map = wolf3d_map_create();
-    }
-    if (readfile(path, buffer) == -1)
-    {
-        ft_putstr_fd("Unable to read maps. Programme going to quit.\n", 2);
-        return (-1);
-    }
-    if (wolf3d_init_map(wolf->map, buffer) == -1)
-    {
-        ft_putstr_fd(
-                "Unable to load maps into memory. Programme going to quit\n", 2);
-    }
-    ft_bzero(wolf->map->name, 1000);
-    ft_strcat(wolf->map->name, path);
-    return (1);
-}
-
-int					wolf3d_loader(t_wolf *wolf)
-{
-    if (wolf3d_load_map(wolf, "../maps/intro.m3d") == -1)
-        return (-1);
-    if (wolf3d_load_skybox(wolf) == -1)
-        return (-1);
-    return (1);
-}
-
-static int			wolf3d_check_name(t_wolf *wolf, char *buffer,
-                                        struct dirent *dp)
-{
-    ft_strcat(buffer, dp->d_name);
-    if (ft_strcmp(buffer, wolf->map->name) != 0)
-    {
-        if (wolf3d_load_map(wolf, buffer))
-            return (1);
-    }
-    return (0);
-}
-
-int					wolf3d_next_map(t_wolf *wolf)
-{
-    DIR				*dirp;
-    struct dirent	*dp;
-    char			buffer[100];
-
-    wolf->player.x = 3;
-    wolf->player.y = 3;
-    if ((dirp = opendir("../maps")) == NULL)
-        return (-1);
-    while ((dp = readdir(dirp)) != NULL)
-    {
-        ft_bzero(buffer, 100);
-        ft_strcat(buffer, "../maps/");
-        if (dp->d_name[0] != '.')
-        {
-            if (wolf3d_check_name(wolf, buffer, dp))
-            {
-                closedir(dirp);
-                return (1);
-            }
-        }
-    }
-    closedir(dirp);
-    free(dp);
-    free(dirp);
-    return (1);
-}
-
 void		wolf3d_destroy_graphics(t_wolf *wolf)
 {
     SDL_DestroyTexture(wolf->skybox);
@@ -272,8 +81,6 @@ t_wolf      init_sdl(void)
 {
     t_wolf sdl;
 
-
-    sdl.map = wolf3d_map_create();
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         exit(11);
@@ -303,11 +110,10 @@ void    sdl_pixel(t_wolf *wolf, int x, int y, t_color_sdl color)
     if (y < 0 && y >= wolf->surf->h)
         return ;
 
-    pixels[4 * (y * width + x) + 0] = color.b;  //0 = BLUE
-    pixels[4 * (y * width + x) + 1] = color.g;  //1 = GREEN
-    pixels[4 * (y * width + x) + 2] = color.r;  //2 = RED
+    pixels[4 * (y * width + x) + 0] = color.b;
+    pixels[4 * (y * width + x) + 1] = color.g;
+    pixels[4 * (y * width + x) + 2] = color.r;
     pixels[4 * (y * width + x) + 3] = 1;
-
 }
 
 void    update(t_wolf *wolf)
@@ -342,13 +148,6 @@ void    event(SDL_Event *ev, t_wolf *wolf)
         wolf->quit = 1;
 }
 
-void clean_up(t_wolf *sdl)
-{
-    SDL_DestroyTexture(sdl->texture);
-    SDL_DestroyWindow(sdl->pwindow);
-    SDL_Quit();
-}
-
 void    init_params_wolf(t_wolf *wolf)
 {
     wolf->raycaster.posx = 13;
@@ -357,14 +156,8 @@ void    init_params_wolf(t_wolf *wolf)
     wolf->raycaster.diry = 0;
     wolf->raycaster.planex = 0;
     wolf->raycaster.planey = 0.5;
-    wolf->raycaster.time = 0;
-    wolf->raycaster.oldtime = 0;
     wolf->raycaster.ms = 0.04;
     wolf->raycaster.rs = 0.03;
-    wolf->raycaster.move_down = 0;
-    wolf->raycaster.move_left = 0;
-    wolf->raycaster.move_right = 0;
-    wolf->raycaster.move_up = 0;
     wolf->raycaster.w_w = WINDW_W;
     wolf->raycaster.w_h = WINDW_H;
     wolf->quit = 1;
@@ -537,12 +330,8 @@ void    loop_hook(t_wolf *wolf)
 int main(int argc, char **argv)
 {
     t_wolf sdl;
-    SDL_Surface *anime;
-
-
 
     sdl = init_sdl();
-    sdl.quit = 0;
 
     init_params_wolf(&sdl);
     loop_hook(&sdl);
