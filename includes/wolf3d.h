@@ -1,7 +1,7 @@
 #ifndef WOLF3D_H
-# define WOLF3D_h
+# define WOLF3D_H
 # include "libft.h"
-# include "SDL.h"
+# include "../SDL2/SDL2.framework/Headers/SDL.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -10,25 +10,21 @@
 # include <stdio.h>
 # include <math.h>
 # include <dirent.h>
-# define MOVE_SPEED_MODIFIER 5.0
-# define ROT_SPEED_MODIFIER 3.0
 # define WINDW_H 900
 # define WINDW_W 900
-# define SCREEN_FPS 60
 #define mapWidth 24
 #define mapHeight 24
-# define SCREEN_TICKS_PER_FRAME 1000 / SCREEN_FPS
-# define TEXT_W 64
-# define TEXT_H 64
-# define MAX_FPS 60
 
-typedef struct s_color_sdl
+
+
+
+typedef struct      s_color_sdl
 {
-    unsigned char r;
-    unsigned char g;
-    unsigned char b;
-    unsigned char a;
-}               t_color_sdl;
+    unsigned char   r;
+    unsigned char   g;
+    unsigned char   b;
+    unsigned char   a;
+}                   t_color_sdl;
 
 typedef struct		s_wolf_raycaster
 {
@@ -73,7 +69,7 @@ typedef struct		s_wolf_raycaster
     double          w_h;
     double          w_w;
     double          oldplaney;
-    t_color_sdl             color;
+    t_color_sdl     color;
     t_color_sdl     sight;
 }					t_wolf_raycaster;
 
@@ -101,10 +97,12 @@ typedef struct		s_wolf
     int				frame;
     t_wmap			*map;
     t_wolf_player		player;
-    t_wolf_raycaster	raycaster;
+    t_wolf_raycaster    raycaster;
     SDL_Texture		*texture;
     SDL_Texture		*skybox;
+    int             worldmap[mapWidth][mapHeight];
     SDL_Surface     *surf;
+    SDL_Surface     *brick;
     double			frametime;
     char			quit;
     int				mousex;
@@ -132,4 +130,14 @@ typedef struct			s_line
     int					ystep;
 }                       t_line;
 
+/*keyhook*/
+
+void            raycast(t_wolf *wolf);
+static void	    wolf3d_key_up(const unsigned char *keystate, t_wolf *wolf);
+static void	    wolf3d_key_down(const unsigned char *keystate, t_wolf *wolf);
+static void	    wolf3d_key_left(t_wolf *wolf);
+static void	    wolf3d_key_right(t_wolf *wolf);
+void		    wolf3d_inputs(const unsigned char *keystate, t_wolf *wolf);
+void            key_hook(SDL_Event *ev, t_wolf *wolf);
+void            event(SDL_Event *ev, t_wolf *wolf);
 #endif

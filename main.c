@@ -1,33 +1,167 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
+/*   Updated: 2019/11/25 16:38:15 by cmicha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
 int worldMap[mapWidth][mapHeight]=
         {
-                {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-                {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-                {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+                {1,1,1,1,1,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,5,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,1,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,0,0,0,0,1},
+                {1,1,1,1,1,1}
         };
+
+
+
+void		wolf3d_destroy_graphics(t_wolf *wolf)
+{
+    //SDL_DestroyTexture(wolf->skybox);
+    SDL_DestroyTexture(wolf->texture);
+    wolf->skybox = NULL;
+    wolf->texture = NULL;
+    SDL_DestroyRenderer(wolf->renderer);
+    SDL_DestroyWindow(wolf->pwindow);
+    wolf->pwindow = NULL;
+    wolf->renderer = NULL;
+}
+
+t_wolf      init_sdl(void)
+{
+    t_wolf sdl;
+
+
+    if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+        exit(11);
+    if (!(sdl.pwindow = SDL_CreateWindow("Wolf3D", SDL_WINDOWPOS_CENTERED,
+            SDL_WINDOWPOS_CENTERED, WINDW_W, WINDW_H, SDL_WINDOW_SHOWN)))
+        exit(22);
+    if (!(sdl.renderer = SDL_CreateRenderer(sdl.pwindow, -1,0)))
+        exit(33);
+    if(!(sdl.texture = SDL_CreateTexture(sdl.renderer, SDL_PIXELFORMAT_ABGR8888,
+            SDL_TEXTUREACCESS_STREAMING, WINDW_W, WINDW_H)))
+        exit(44);
+    if (!(sdl.surf = SDL_CreateRGBSurface(0, WINDW_W, WINDW_H, 32, 0,0,0,0)))
+        exit(55);
+
+    if (!(sdl.brick = SDL_LoadBMP("../brick.bmp")))
+        exit(66);
+
+    return (sdl);
+}
+
+unsigned char    get_pixel(SDL_Surface *surf, int x, int y)
+{
+    unsigned char  *pixels = (Uint32 *)surf->pixels;
+    return (pixels[(y * surf->w) + x]);
+}
+
+void    sdl_pixel(t_wolf *wolf, int x, int y, t_color_sdl color)
+{
+    Uint32 *pixels;
+    int width;
+
+    pixels = (Uint32 *)wolf->brick->pixels;
+    width = wolf->surf->w;
+    if (x < 0 && x >= wolf->surf->w)
+        return ;
+    if (y < 0 && y >= wolf->surf->h)
+        return ;
+
+    pixels[4 *(y * width + x)] = 0x123123;
+
+}
+
+void    draw_img(SDL_Surface *img, int x, int y, int w, int h, int x2, int y2, t_wolf *wolf)
+{
+    SDL_Rect dest;
+
+    dest.x = x;
+    dest.y = y;
+
+    SDL_Rect dest2;
+
+    dest2.x = x2;
+    dest2.y = y2;
+    dest2.w = w;
+    dest2.h = h;
+    SDL_BlitSurface(img, &dest2, wolf->surf, &dest);
+
+}
+
+void    update(t_wolf *wolf)
+{
+    SDL_Rect dstrect;
+
+    dstrect.x = 0;
+    dstrect.y = 0;
+    dstrect.w = wolf->surf->w;
+    dstrect.h = wolf->surf->h;
+
+    SDL_Texture *text = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
+    SDL_Texture *t = SDL_CreateTextureFromSurface(wolf->renderer, wolf->brick);
+    SDL_RenderCopy(wolf->renderer, text, NULL, &dstrect);
+    SDL_DestroyTexture(text);
+
+    SDL_RenderPresent(wolf->renderer);
+    SDL_FillRect(wolf->surf, NULL, 0x858585);
+}
+
+void    key_hook(SDL_Event *ev, t_wolf *wolf)
+{
+    if (ev->key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+        wolf->quit = 1;
+
+}
+
+void    event(SDL_Event *ev, t_wolf *wolf)
+{
+    if (ev->type == SDL_KEYDOWN)
+        key_hook(ev, wolf);
+    if (ev->type == SDL_QUIT)
+        wolf->quit = 1;
+}
+
+void    init_params_wolf(t_wolf *wolf)
+{
+    wolf->raycaster.posx = 2;
+    wolf->raycaster.posy = 2;
+    wolf->raycaster.dirx = -1;
+    wolf->raycaster.diry = 0;
+    wolf->raycaster.planex = 0;
+    wolf->raycaster.planey = 0.5;
+    wolf->raycaster.ms = 0.04;
+    wolf->raycaster.rs = 0.03;
+    wolf->raycaster.w_w = WINDW_W;
+    wolf->raycaster.w_h = WINDW_H;
+    wolf->quit = 1;
+
+
+
+
+
+}
 
 static void	wolf3d_key_up(const unsigned char *keystate, t_wolf *wolf)
 {
@@ -65,104 +199,21 @@ static void	wolf3d_key_right(t_wolf *wolf)
     wolf->raycaster.planey = wolf->raycaster.oldplanex * sin(wolf->raycaster.rs * -1) + wolf->raycaster.planey * cos(wolf->raycaster.rs * -1);
 }
 
-void		wolf3d_destroy_graphics(t_wolf *wolf)
+void		wolf3d_inputs(const unsigned char *keystate, t_wolf *wolf)
 {
-    SDL_DestroyTexture(wolf->skybox);
-    SDL_DestroyTexture(wolf->texture);
-    wolf->skybox = NULL;
-    wolf->texture = NULL;
-    SDL_DestroyRenderer(wolf->renderer);
-    SDL_DestroyWindow(wolf->pwindow);
-    wolf->pwindow = NULL;
-    wolf->renderer = NULL;
+    if (keystate[SDL_SCANCODE_ESCAPE])
+        wolf->quit = 0;
+    if (keystate[SDL_SCANCODE_UP])
+        wolf3d_key_up(keystate, wolf);
+    if (keystate[SDL_SCANCODE_DOWN])
+        wolf3d_key_down(keystate, wolf);
+    if (keystate[SDL_SCANCODE_RIGHT])
+        wolf3d_key_right(wolf);
+    if (keystate[SDL_SCANCODE_LEFT])
+        wolf3d_key_left(wolf);
+    raycast(wolf);
 }
 
-t_wolf      init_sdl(void)
-{
-    t_wolf sdl;
-
-
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-        exit(11);
-    if (!(sdl.pwindow = SDL_CreateWindow("Wolf3D", SDL_WINDOWPOS_CENTERED,
-            SDL_WINDOWPOS_CENTERED, WINDW_W, WINDW_H, SDL_WINDOW_SHOWN)))
-        exit(22);
-    if (!(sdl.renderer = SDL_CreateRenderer(sdl.pwindow, -1,0)))
-        exit(33);
-    if(!(sdl.texture = SDL_CreateTexture(sdl.renderer, SDL_PIXELFORMAT_ABGR8888,
-            SDL_TEXTUREACCESS_STREAMING, WINDW_W, WINDW_H)))
-        exit(44);
-    if (!(sdl.surf = SDL_CreateRGBSurface(0, WINDW_W, WINDW_H, 32, 0,0,0,0)))
-        exit(55);
-
-    return (sdl);
-}
-
-void    sdl_pixel(t_wolf *wolf, int x, int y, t_color_sdl color)
-{
-    unsigned char *pixels;
-    int width;
-
-    pixels = (unsigned char*)wolf->surf->pixels;
-    width = wolf->surf->w;
-    if (x < 0 && x >= wolf->surf->w)
-        return ;
-    if (y < 0 && y >= wolf->surf->h)
-        return ;
-
-    pixels[4 * (y * width + x) + 0] = color.b;
-    pixels[4 * (y * width + x) + 1] = color.g;
-    pixels[4 * (y * width + x) + 2] = color.r;
-    pixels[4 * (y * width + x) + 3] = 1;
-}
-
-void    update(t_wolf *wolf)
-{
-    SDL_Rect dstrect;
-
-    dstrect.x = 0;
-    dstrect.y = 0;
-    dstrect.w = wolf->surf->w;
-    dstrect.h = wolf->surf->h;
-
-    SDL_Texture *text = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
-    SDL_RenderCopy(wolf->renderer, text, NULL, &dstrect);
-    SDL_DestroyTexture(text);
-
-    SDL_RenderPresent(wolf->renderer);
-    SDL_FillRect(wolf->surf, NULL, 0x858585);
-}
-
-void    key_hook(SDL_Event *ev, t_wolf *wolf)
-{
-    if (ev->key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-        wolf->quit = 1;
-
-}
-
-void    event(SDL_Event *ev, t_wolf *wolf)
-{
-    if (ev->type == SDL_KEYDOWN)
-        key_hook(ev, wolf);
-    if (ev->type == SDL_QUIT)
-        wolf->quit = 1;
-}
-
-void    init_params_wolf(t_wolf *wolf)
-{
-    wolf->raycaster.posx = 13;
-    wolf->raycaster.posy = 12;
-    wolf->raycaster.dirx = -1;
-    wolf->raycaster.diry = 0;
-    wolf->raycaster.planex = 0;
-    wolf->raycaster.planey = 0.5;
-    wolf->raycaster.ms = 0.04;
-    wolf->raycaster.rs = 0.03;
-    wolf->raycaster.w_w = WINDW_W;
-    wolf->raycaster.w_h = WINDW_H;
-    wolf->quit = 1;
-
-}
 
 void    draw_wall(int x, int start, int end, t_wolf *wolf)
 {
@@ -289,32 +340,16 @@ void   raycast(t_wolf *wolf)
         }
         draw_wall(wolf->raycaster.x, wolf->raycaster.drawstart - 1, wolf->raycaster.drawend, wolf);
         draw_sight(wolf);
-
     }
 }
 
-void		wolf3d_inputs(const unsigned char *keystate, t_wolf *wolf)
-{
-    if (keystate[SDL_SCANCODE_ESCAPE])
-        wolf->quit = 0;
-    if (keystate[SDL_SCANCODE_UP])
-        wolf3d_key_up(keystate, wolf);
-    if (keystate[SDL_SCANCODE_DOWN])
-        wolf3d_key_down(keystate, wolf);
-    if (keystate[SDL_SCANCODE_RIGHT])
-        wolf3d_key_right(wolf);
-    if (keystate[SDL_SCANCODE_LEFT])
-        wolf3d_key_left(wolf);
-    raycast(wolf);
 
-}
 
 void    loop_hook(t_wolf *wolf)
 {
     SDL_Event   ev;
     Uint8 *key;
 
-    key = NULL;
     key = (Uint8 *)SDL_GetKeyboardState(NULL);
     while (wolf->quit != 0)
     {
@@ -331,8 +366,8 @@ int main(int argc, char **argv)
 {
     t_wolf sdl;
 
-    sdl = init_sdl();
 
+    sdl = init_sdl();
     init_params_wolf(&sdl);
     loop_hook(&sdl);
     wolf3d_destroy_graphics(&sdl);
