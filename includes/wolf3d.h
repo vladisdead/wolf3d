@@ -12,8 +12,8 @@
 # include <dirent.h>
 # define WINDW_H 900
 # define WINDW_W 900
-#define mapWidth 24
-#define mapHeight 24
+//#define mapWidth 24
+//#define mapHeight 24
 
 
 
@@ -86,8 +86,10 @@ typedef struct		s_wolf_player
 
 typedef struct		s_wolf_m3d
 {
-    char			**map;
+    int			**map;
     char			name[1024];
+	int				mapWidth;
+	int 			mapHeight;
 }					t_wmap;
 
 typedef struct		s_wolf
@@ -100,7 +102,7 @@ typedef struct		s_wolf
     t_wolf_raycaster    raycaster;
     SDL_Texture		*texture;
     SDL_Texture		*skybox;
-    int             worldmap[mapWidth][mapHeight];
+ //   int             worldmap[mapWidth][mapHeight];
     SDL_Surface     *surf;
     SDL_Surface     *brick;
     double			frametime;
@@ -140,4 +142,30 @@ static void	    wolf3d_key_right(t_wolf *wolf);
 void		    wolf3d_inputs(const unsigned char *keystate, t_wolf *wolf);
 void            key_hook(SDL_Event *ev, t_wolf *wolf);
 void            event(SDL_Event *ev, t_wolf *wolf);
+
+
+/*read map*/
+t_wmap *init_map(char *arg);
+static int count_digits(char *line);
+int count_data(char *arg, t_wmap *wolf);
+char ***get_buff(char *arg, t_wmap *wolf);
+int **interpret_buff(char *arg, t_wmap *wolf);
+/*raycast*/
+void    dda_init(t_wolf *wolf);
+void    dda(t_wolf *wolf);
+void   init_ray(t_wolf *wolf, int x);
+void   raycast(t_wolf *wolf);
+/*main*/
+void		wolf3d_destroy_graphics(t_wolf *wolf);
+void    loop_hook(t_wolf *wolf);
+/*drawer*/
+void    sdl_pixel(t_wolf *wolf, int x, int y, t_color_sdl color);
+void    draw_wall(int x, int start, int end, t_wolf *wolf);
+void    draw_sight(t_wolf *wolf);
+void    update(t_wolf *wolf);
+/*init*/
+t_wolf      init_sdl(void);
+void    init_params_wolf(t_wolf *wolf);
+
+
 #endif

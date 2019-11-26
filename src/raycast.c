@@ -41,7 +41,7 @@ void    dda(t_wolf *wolf)
             wolf->raycaster.mapy += wolf->raycaster.stepy;
             wolf->raycaster.side = 1;
         }
-        if (worldMap[wolf->raycaster.mapx][wolf->raycaster.mapy] > 0)
+        if (wolf->map->map[wolf->raycaster.mapx][wolf->raycaster.mapy] > 0)
             wolf->raycaster.hit = 1;
     }
 }

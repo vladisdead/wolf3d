@@ -6,34 +6,11 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/11/25 16:38:15 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/11/26 18:36:54 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-int worldMap[mapWidth][mapHeight]=
-        {
-                {1,1,1,1,1,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,5,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,1,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,0,0,0,0,1},
-                {1,1,1,1,1,1}
-        };
-
-
 
 void		wolf3d_destroy_graphics(t_wolf *wolf)
 {
@@ -67,9 +44,11 @@ void    loop_hook(t_wolf *wolf)
 int main(int argc, char **argv)
 {
     t_wolf sdl;
-
+    argc = 1;
 
     sdl = init_sdl();
+    sdl.map = init_map(argv[argc]);
+
     init_params_wolf(&sdl);
     loop_hook(&sdl);
     wolf3d_destroy_graphics(&sdl);

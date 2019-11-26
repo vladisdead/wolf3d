@@ -26,8 +26,8 @@ t_wolf      init_sdl(void)
 
 void    init_params_wolf(t_wolf *wolf)
 {
-    wolf->raycaster.posx = 2;
-    wolf->raycaster.posy = 2;
+    wolf->raycaster.posx = 1;
+    wolf->raycaster.posy = 1;
     wolf->raycaster.dirx = -1;
     wolf->raycaster.diry = 0;
     wolf->raycaster.planex = 0;

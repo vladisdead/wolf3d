@@ -2,17 +2,17 @@
 
 static void	wolf3d_key_up(const unsigned char *keystate, t_wolf *wolf)
 {
-    if (worldMap[(int)(wolf->raycaster.posx + wolf->raycaster.dirx * wolf->raycaster.ms)][(int)wolf->raycaster.posy] == 0)
+    if (wolf->map->map[(int)(wolf->raycaster.posx + wolf->raycaster.dirx * wolf->raycaster.ms)][(int)wolf->raycaster.posy] == 0)
         wolf->raycaster.posx += wolf->raycaster.dirx * wolf->raycaster.ms;
-    if (worldMap[(int)wolf->raycaster.posx][(int)(wolf->raycaster.posy + wolf->raycaster.diry * wolf->raycaster.ms)] == 0)
+    if (wolf->map->map[(int)wolf->raycaster.posx][(int)(wolf->raycaster.posy + wolf->raycaster.diry * wolf->raycaster.ms)] == 0)
         wolf->raycaster.posy += wolf->raycaster.diry * wolf->raycaster.ms;
 }
 
 static void	wolf3d_key_down(const unsigned char *keystate, t_wolf *wolf)
 {
-    if (worldMap[(int)(wolf->raycaster.posx - wolf->raycaster.dirx * wolf->raycaster.ms)][(int)wolf->raycaster.posy] == 0)
+    if (wolf->map->map[(int)(wolf->raycaster.posx - wolf->raycaster.dirx * wolf->raycaster.ms)][(int)wolf->raycaster.posy] == 0)
         wolf->raycaster.posx -= wolf->raycaster.dirx * wolf->raycaster.ms;
-    if (worldMap[(int)wolf->raycaster.posx][(int)(wolf->raycaster.posy - wolf->raycaster.diry * wolf->raycaster.ms)] == 0)
+    if (wolf->map->map[(int)wolf->raycaster.posx][(int)(wolf->raycaster.posy - wolf->raycaster.diry * wolf->raycaster.ms)] == 0)
         wolf->raycaster.posy -= wolf->raycaster.diry * wolf->raycaster.ms;
 }
 
