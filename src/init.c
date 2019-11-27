@@ -17,7 +17,7 @@ t_wolf      init_sdl(void)
         exit(44);
     if (!(sdl.surf = SDL_CreateRGBSurface(0, WINDW_W, WINDW_H, 32, 0,0,0,0)))
         exit(55);
-    if (!(sdl.brick = SDL_LoadBMP("../brick.bmp")))
+    if (!(sdl.brick = SDL_LoadBMP("../wood1.bmp")))
         exit(66);
 
     return (sdl);
@@ -26,8 +26,8 @@ t_wolf      init_sdl(void)
 
 void    init_params_wolf(t_wolf *wolf)
 {
-    wolf->raycaster.posx = 1;
-    wolf->raycaster.posy = 1;
+    wolf->raycaster.posx = 2;
+    wolf->raycaster.posy = 2;
     wolf->raycaster.dirx = -1;
     wolf->raycaster.diry = 0;
     wolf->raycaster.planex = 0;

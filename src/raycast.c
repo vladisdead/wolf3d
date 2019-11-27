@@ -65,6 +65,7 @@ void   init_ray(t_wolf *wolf, int x)
         wolf->raycaster.perpwalldist = fabs((wolf->raycaster.mapx - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) / wolf->raycaster.raydirx);
     else
         wolf->raycaster.perpwalldist = fabs((wolf->raycaster.mapy - wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) / wolf->raycaster.raydiry);
+
 }
 
 void   raycast(t_wolf *wolf)

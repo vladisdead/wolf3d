@@ -1,7 +1,7 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include "libft.h"
-# include "../SDL2/SDL2.framework/Headers/SDL.h"
+# include "SDL.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -14,6 +14,8 @@
 # define WINDW_W 900
 //#define mapWidth 24
 //#define mapHeight 24
+#define TEXT_W 256
+#define TEXT_H 256
 
 
 
@@ -109,6 +111,9 @@ typedef struct		s_wolf
     char			quit;
     int				mousex;
     int				mousey;
+    int             texx;
+    int             texy;
+    int             d;
 }					t_wolf;
 
 
@@ -159,10 +164,11 @@ void   raycast(t_wolf *wolf);
 void		wolf3d_destroy_graphics(t_wolf *wolf);
 void    loop_hook(t_wolf *wolf);
 /*drawer*/
-void    sdl_pixel(t_wolf *wolf, int x, int y, t_color_sdl color);
+void    sdl_pixel(t_wolf *wolf, int x, int y, uint32_t *color);
 void    draw_wall(int x, int start, int end, t_wolf *wolf);
 void    draw_sight(t_wolf *wolf);
 void    update(t_wolf *wolf);
+
 /*init*/
 t_wolf      init_sdl(void);
 void    init_params_wolf(t_wolf *wolf);
