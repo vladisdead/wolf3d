@@ -14,10 +14,10 @@ void			put_pixel(SDL_Surface *surf, const int x, const int y,
 Uint32 			read_pixel(SDL_Surface *surface, const int x, const int y)
 {
     int		bpp;
-    Uint8 *p;
+    uint8_t *p;
 
     bpp = surface->format->BytesPerPixel;
-    p = (Uint8 *)surface->pixels + (y * surface->pitch) + x * bpp;
+    p = (uint8_t *)surface->pixels + y * surface->pitch + x * bpp;
     if (bpp == 1)
         return (*p);
     if (bpp == 2)
@@ -27,10 +27,10 @@ Uint32 			read_pixel(SDL_Surface *surface, const int x, const int y)
         if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
             return (p[0] << 16 | p[1] << 8 | p[2]);
         else
-            return (p[0] | p[1] << 8 | p[2] << 16);
+            return (p[0] << 0 | p[1] << 8 | p[2] << 16);
     }
     if (bpp == 4)
-        return (*(Uint32 *)p);
+        return (*(uint32_t *)p);
     return (0);
 }
 
@@ -56,14 +56,17 @@ void    sdl_pixel(t_wolf *wolf, int x, int y, uint32_t *color)
 
 void    draw_wall(int x, int start, int end, t_wolf *wolf)
 {
+    double wallx;
+
     if (wolf->raycaster.side == 0)
-        wolf->raycaster.perpwalldist = wolf->raycaster.rayposy + wolf->raycaster.perpwalldist * wolf->raycaster.raydiry;
+        wallx = wolf->raycaster.rayposy + wolf->raycaster.perpwalldist * wolf->raycaster.raydiry;
     else
-        wolf->raycaster.perpwalldist = wolf->raycaster.rayposx + wolf->raycaster.perpwalldist * wolf->raycaster.raydirx;
-    wolf->texx = (int)(wolf->raycaster.perpwalldist * (double)TEXT_W);
+        wallx = wolf->raycaster.rayposx + wolf->raycaster.perpwalldist * wolf->raycaster.raydirx;
+    wallx -= floor(wallx);
+    wolf->texx = (int)(wallx * (double)TEXT_W);
     if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx > 0)
         wolf->texx = TEXT_W - wolf->texx - 1;
-    if (wolf->raycaster.side == 1 && wolf->raycaster.raydirx < 0)
+    if (wolf->raycaster.side == 1 && wolf->raycaster.raydiry < 0)
         wolf->texx = TEXT_W - wolf->texx - 1;
     while (++start < end)
     {
@@ -92,7 +95,7 @@ void    update(t_wolf *wolf)
     dstrect.h = wolf->surf->h;
 
     SDL_Texture *text = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
-    SDL_Texture *t = SDL_CreateTextureFromSurface(wolf->renderer, wolf->brick);
+
     SDL_RenderCopy(wolf->renderer, text, NULL, &dstrect);
     SDL_DestroyTexture(text);
 

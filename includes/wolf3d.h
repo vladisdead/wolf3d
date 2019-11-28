@@ -19,7 +19,6 @@
 
 
 
-
 typedef struct      s_color_sdl
 {
     unsigned char   r;
@@ -107,6 +106,7 @@ typedef struct		s_wolf
  //   int             worldmap[mapWidth][mapHeight];
     SDL_Surface     *surf;
     SDL_Surface     *brick;
+    SDL_Surface     *test;
     double			frametime;
     char			quit;
     int				mousex;
@@ -172,6 +172,7 @@ void    update(t_wolf *wolf);
 /*init*/
 t_wolf      init_sdl(void);
 void    init_params_wolf(t_wolf *wolf);
+SDL_Surface		*load_texture(char *path, t_wolf *wolf);
 
 
 #endif

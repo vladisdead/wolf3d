@@ -62,9 +62,9 @@ void   init_ray(t_wolf *wolf, int x)
     dda_init(wolf);
     dda(wolf);
     if (wolf->raycaster.side == 0)
-        wolf->raycaster.perpwalldist = fabs((wolf->raycaster.mapx - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) / wolf->raycaster.raydirx);
+        wolf->raycaster.perpwalldist = ((wolf->raycaster.mapx - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) / wolf->raycaster.raydirx);
     else
-        wolf->raycaster.perpwalldist = fabs((wolf->raycaster.mapy - wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) / wolf->raycaster.raydiry);
+        wolf->raycaster.perpwalldist = ((wolf->raycaster.mapy - wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) / wolf->raycaster.raydiry);
 
 }
 
@@ -76,27 +76,14 @@ void   raycast(t_wolf *wolf)
         init_ray(wolf, wolf->raycaster.x);
         if (wolf->raycaster.camerax <= 0.05)
             wolf->raycaster.camerax = 0.05;
-        wolf->raycaster.lineheight = abs((int)(WINDW_H / wolf->raycaster.perpwalldist));
-        wolf->raycaster.drawstart = (-1 * (wolf->raycaster.lineheight)) / 2 + WINDW_H / 2;
+        wolf->raycaster.lineheight = (int)(WINDW_H / wolf->raycaster.perpwalldist);
+        wolf->raycaster.drawstart =  ((-wolf->raycaster.lineheight)) / 2 + WINDW_H / 2;
         if (wolf->raycaster.drawstart < 0)
             wolf->raycaster.drawstart = 0;
         wolf->raycaster.drawend = wolf->raycaster.lineheight / 2 + WINDW_H / 2;
         if (wolf->raycaster.drawend >= WINDW_H)
             wolf->raycaster.drawend = WINDW_H - 1;
-        if (wolf->raycaster.side == 0)
-        {
-            if (wolf->raycaster.stepx < 0)
-                wolf->raycaster.color = (t_color_sdl) {217, 141, 141, 1};
-            else
-                wolf->raycaster.color = (t_color_sdl) {166, 141, 217, 1};
-        }
-        else
-        {
-            if (wolf->raycaster.stepy > 0)
-                wolf->raycaster.color = (t_color_sdl) {141, 217, 193, 1};
-            else
-                wolf->raycaster.color = (t_color_sdl) {197, 217, 141, 1};
-        }
+
         draw_wall(wolf->raycaster.x, wolf->raycaster.drawstart - 1, wolf->raycaster.drawend, wolf);
         draw_sight(wolf);
     }
