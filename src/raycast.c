@@ -48,7 +48,7 @@ void    dda(t_wolf *wolf)
 
 void   init_ray(t_wolf *wolf, int x)
 {
-    wolf->raycaster.camerax = 2 * x / (double)WINDW_H - 1;
+    wolf->raycaster.camerax = 2 * x / (double)WINDW_H - 1.0;
     wolf->raycaster.rayposx = wolf->raycaster.posx;
     wolf->raycaster.rayposy = wolf->raycaster.posy;
     wolf->raycaster.raydirx = wolf->raycaster.dirx + wolf->raycaster.planex * wolf->raycaster.camerax;
@@ -62,10 +62,23 @@ void   init_ray(t_wolf *wolf, int x)
     dda_init(wolf);
     dda(wolf);
     if (wolf->raycaster.side == 0)
-        wolf->raycaster.perpwalldist = ((wolf->raycaster.mapx - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) / wolf->raycaster.raydirx);
+    {
+        wolf->raycaster.perpwalldist = fabs(
+                (wolf->raycaster.mapx - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) /
+                wolf->raycaster.raydirx);
+        wolf->raycaster.drawwall = fabs(
+                (wolf->raycaster.mapx - 0.3 - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) /
+                wolf->raycaster.raydirx);
+    }
     else
-        wolf->raycaster.perpwalldist = ((wolf->raycaster.mapy - wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) / wolf->raycaster.raydiry);
-
+    {
+        wolf->raycaster.perpwalldist = fabs(
+                (wolf->raycaster.mapy - wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) /
+                wolf->raycaster.raydiry);
+        wolf->raycaster.drawwall = fabs(
+                (wolf->raycaster.mapy - 0.3 -wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) /
+                wolf->raycaster.raydiry);
+    }
 }
 
 void   raycast(t_wolf *wolf)
@@ -73,17 +86,17 @@ void   raycast(t_wolf *wolf)
     wolf->raycaster.x = -1;
     while (++wolf->raycaster.x < WINDW_W)
     {
+        double wall;
+
         init_ray(wolf, wolf->raycaster.x);
-        if (wolf->raycaster.camerax <= 0.05)
-            wolf->raycaster.camerax = 0.05;
-        wolf->raycaster.lineheight = (int)(WINDW_H / wolf->raycaster.perpwalldist);
+
+        wolf->raycaster.lineheight = abs((int)(WINDW_H / wolf->raycaster.perpwalldist));
         wolf->raycaster.drawstart =  ((-wolf->raycaster.lineheight)) / 2 + WINDW_H / 2;
         if (wolf->raycaster.drawstart < 0)
             wolf->raycaster.drawstart = 0;
         wolf->raycaster.drawend = wolf->raycaster.lineheight / 2 + WINDW_H / 2;
         if (wolf->raycaster.drawend >= WINDW_H)
             wolf->raycaster.drawend = WINDW_H - 1;
-
         draw_wall(wolf->raycaster.x, wolf->raycaster.drawstart - 1, wolf->raycaster.drawend, wolf);
         draw_sight(wolf);
     }

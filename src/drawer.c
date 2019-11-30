@@ -14,10 +14,10 @@ void			put_pixel(SDL_Surface *surf, const int x, const int y,
 Uint32 			read_pixel(SDL_Surface *surface, const int x, const int y)
 {
     int		bpp;
-    uint8_t *p;
+    Uint8 *p;
 
     bpp = surface->format->BytesPerPixel;
-    p = (uint8_t *)surface->pixels + y * surface->pitch + x * bpp;
+    p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
     if (bpp == 1)
         return (*p);
     if (bpp == 2)
@@ -30,7 +30,7 @@ Uint32 			read_pixel(SDL_Surface *surface, const int x, const int y)
             return (p[0] << 0 | p[1] << 8 | p[2] << 16);
     }
     if (bpp == 4)
-        return (*(uint32_t *)p);
+        return (*(Uint32 *)p);
     return (0);
 }
 
@@ -56,14 +56,13 @@ void    sdl_pixel(t_wolf *wolf, int x, int y, uint32_t *color)
 
 void    draw_wall(int x, int start, int end, t_wolf *wolf)
 {
-    double wallx;
-
     if (wolf->raycaster.side == 0)
-        wallx = wolf->raycaster.rayposy + wolf->raycaster.perpwalldist * wolf->raycaster.raydiry;
+        wolf->raycaster.wallx = wolf->raycaster.rayposy + wolf->raycaster.perpwalldist * wolf->raycaster.raydiry;
     else
-        wallx = wolf->raycaster.rayposx + wolf->raycaster.perpwalldist * wolf->raycaster.raydirx;
-    wallx -= floor(wallx);
-    wolf->texx = (int)(wallx * (double)TEXT_W);
+        wolf->raycaster.wallx = wolf->raycaster.rayposx + wolf->raycaster.perpwalldist * wolf->raycaster.raydirx;
+
+    wolf->raycaster.wallx -= floor(wolf->raycaster.wallx);
+    wolf->texx = (int)(wolf->raycaster.wallx * (double)TEXT_W);
     if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx > 0)
         wolf->texx = TEXT_W - wolf->texx - 1;
     if (wolf->raycaster.side == 1 && wolf->raycaster.raydiry < 0)
@@ -76,7 +75,6 @@ void    draw_wall(int x, int start, int end, t_wolf *wolf)
         put_pixel(wolf->surf, x, start,
                 read_pixel(wolf->brick, wolf->texx, wolf->texy));
     }
-
 }
 
 void    draw_sight(t_wolf *wolf)

@@ -28,13 +28,12 @@ t_wolf      init_sdl(void)
         exit(22);
     if (!(sdl.renderer = SDL_CreateRenderer(sdl.pwindow, -1,0)))
         exit(33);
-
     if (!(sdl.surf = SDL_CreateRGBSurface(0, WINDW_W, WINDW_H, 32, 0, 0, 0, 0)))
         exit(55);
     if(!(sdl.texture = SDL_CreateTexture(sdl.renderer, SDL_PIXELFORMAT_ABGR8888,
             SDL_TEXTUREACCESS_STREAMING, WINDW_W, WINDW_H)))
         exit(44);
-    if (!(sdl.brick = load_texture("../lesya.bmp", &sdl)))
+    if (!(sdl.brick = load_texture("../WALL96.bmp", &sdl)))
         exit(66);
 
     return (sdl);
@@ -43,12 +42,12 @@ t_wolf      init_sdl(void)
 
 void    init_params_wolf(t_wolf *wolf)
 {
-    wolf->raycaster.posx = 2;
-    wolf->raycaster.posy = 2;
+    wolf->raycaster.posx = 10;
+    wolf->raycaster.posy = 4.5;
     wolf->raycaster.dirx = -1;
     wolf->raycaster.diry = 0;
     wolf->raycaster.planex = 0;
-    wolf->raycaster.planey = 0.5;
+    wolf->raycaster.planey = 0.66;
     wolf->raycaster.ms = 0.04;
     wolf->raycaster.rs = 0.03;
     wolf->raycaster.w_w = WINDW_W;
