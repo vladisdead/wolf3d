@@ -2,7 +2,7 @@
 
 void	wolf3d_key_up(const unsigned char *keystate, t_wolf *wolf)
 {
-   
+
     if ((wolf->map->map[(int)(wolf->raycaster.posx + wolf->raycaster.dirx * wolf->raycaster.ms)][(int)wolf->raycaster.posy]) == 0
     && (wolf->map->map[(int)(wolf->raycaster.posx + wolf->raycaster.dirx * wolf->raycaster.ms + 0.1)][(int)wolf->raycaster.posy] != 1)
     && (wolf->map->map[(int)(wolf->raycaster.posx + wolf->raycaster.dirx * wolf->raycaster.ms - 0.1)][(int)wolf->raycaster.posy] != 1))

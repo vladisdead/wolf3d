@@ -77,9 +77,49 @@ void    draw_wall(int x, int start, int end, t_wolf *wolf)
     }
 }
 
+
 void    draw_sight(t_wolf *wolf)
 {
 
+    if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx > 0)
+    {
+        wolf->raycaster.floorxwall = wolf->raycaster.mapx;
+        wolf->raycaster.floorywall = wolf->raycaster.wallx + wolf->raycaster.mapy;
+    }
+    else if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx < 0)
+    {
+        wolf->raycaster.floorxwall = wolf->raycaster.mapx + 1.0;
+        wolf->raycaster.floorywall = wolf->raycaster.mapy + wolf->raycaster.wallx;
+    }
+    else if (wolf->raycaster.side == 1 && wolf->raycaster.raydiry > 0)
+    {
+        wolf->raycaster.floorxwall = wolf->raycaster.mapx + wolf->raycaster.wallx;
+        wolf->raycaster.floorywall = wolf->raycaster.mapy;
+    }
+    else
+    {
+        wolf->raycaster.floorxwall = wolf->raycaster.mapx + wolf->raycaster.wallx;
+        wolf->raycaster.floorywall = wolf->raycaster.mapy + 1.0;
+    }
+    wolf->raycaster.distwall = wolf->raycaster.perpwalldist;
+    wolf->raycaster.distplayer = 0.0;
+    if (wolf->raycaster.drawend < 0)
+        wolf->raycaster.drawend = WINDW_H;
+    wolf->raycaster.y = wolf->raycaster.drawend - 1;
+    while (++wolf->raycaster.y < WINDW_H)
+    {
+        wolf->raycaster.currentdist = WINDW_H / (2.0 * wolf->raycaster.y - WINDW_H);
+
+        wolf->raycaster.weight = (wolf->raycaster.currentdist - wolf->raycaster.distplayer) / (wolf->raycaster.distwall - wolf->raycaster.distplayer);
+        wolf->raycaster.currentfloorx = wolf->raycaster.weight * wolf->raycaster.floorxwall + (1.0 - wolf->raycaster.weight) * wolf->raycaster.posx;
+        wolf->raycaster.currentfloory = wolf->raycaster.weight * wolf->raycaster.floorywall + (1.0 - wolf->raycaster.weight) * wolf->raycaster.posy;
+        wolf->raycaster.floortexx = (int)(wolf->raycaster.currentfloorx * TEXT_W) % TEXT_W;
+        wolf->raycaster.floortexy = (int)(wolf->raycaster.currentfloory * TEXT_H) % TEXT_H;
+        put_pixel(wolf->surf, wolf->raycaster.x, wolf->raycaster.y,
+                read_pixel(wolf->floor, wolf->raycaster.floortexx, wolf->raycaster.floortexy));
+        put_pixel(wolf->surf, wolf->raycaster.x, WINDW_H - wolf->raycaster.y,
+                  read_pixel(wolf->ceil, wolf->raycaster.floortexx, wolf->raycaster.floortexy));
+    }
 
 }
 
@@ -91,13 +131,10 @@ void    update(t_wolf *wolf)
     dstrect.y = 0;
     dstrect.w = wolf->surf->w;
     dstrect.h = wolf->surf->h;
-
-    SDL_Texture *text = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
-
-    SDL_RenderCopy(wolf->renderer, text, NULL, &dstrect);
-    SDL_DestroyTexture(text);
-
+    wolf->texture = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
+    SDL_RenderCopy(wolf->renderer, wolf->texture, NULL, &dstrect);
+    SDL_DestroyTexture(wolf->texture);
     SDL_RenderPresent(wolf->renderer);
-    SDL_FillRect(wolf->surf, NULL, 0x858585);
+    SDL_FillRect(wolf->surf, NULL, 0x00);
 }
 

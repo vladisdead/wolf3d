@@ -16,7 +16,7 @@ void		wolf3d_destroy_graphics(t_wolf *wolf)
 {
     //SDL_DestroyTexture(wolf->skybox);
     SDL_DestroyTexture(wolf->texture);
-    wolf->skybox = NULL;
+
     wolf->texture = NULL;
     SDL_DestroyRenderer(wolf->renderer);
     SDL_DestroyWindow(wolf->pwindow);
@@ -38,6 +38,8 @@ void    loop_hook(t_wolf *wolf)
         raycast(wolf);
         wolf3d_inputs(key, wolf);
         update(wolf);
+        fps(wolf);
+        wolf->framenum++;
     }
 }
 
@@ -50,6 +52,7 @@ int main(int argc, char **argv)
     sdl.map = init_map(argv[argc]);
 
     init_params_wolf(&sdl);
+    get_texture(&sdl);
     loop_hook(&sdl);
     wolf3d_destroy_graphics(&sdl);
     return 0;

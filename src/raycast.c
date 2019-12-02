@@ -84,12 +84,9 @@ void   init_ray(t_wolf *wolf, int x)
 void   raycast(t_wolf *wolf)
 {
     wolf->raycaster.x = -1;
-    while (++wolf->raycaster.x < WINDW_W)
+    while (++wolf->raycaster.x < WINDW_W + 1)
     {
-        double wall;
-
         init_ray(wolf, wolf->raycaster.x);
-
         wolf->raycaster.lineheight = abs((int)(WINDW_H / wolf->raycaster.perpwalldist));
         wolf->raycaster.drawstart =  ((-wolf->raycaster.lineheight)) / 2 + WINDW_H / 2;
         if (wolf->raycaster.drawstart < 0)

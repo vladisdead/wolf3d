@@ -33,24 +33,32 @@ t_wolf      init_sdl(void)
     if(!(sdl.texture = SDL_CreateTexture(sdl.renderer, SDL_PIXELFORMAT_ABGR8888,
             SDL_TEXTUREACCESS_STREAMING, WINDW_W, WINDW_H)))
         exit(44);
-    if (!(sdl.brick = load_texture("../WALL96.bmp", &sdl)))
-        exit(66);
 
     return (sdl);
 }
 
+void    get_texture(t_wolf *wolf)
+{
+    if (!(wolf->brick = load_texture("../wall.bmp", wolf)))
+        exit(66);
+    if (!(wolf->floor = load_texture("../floor.bmp", wolf)))
+        exit(77);
+    if (!(wolf->ceil = load_texture("../ceil.bmp", wolf)))
+        exit(88);
+}
 
 void    init_params_wolf(t_wolf *wolf)
 {
-    wolf->raycaster.posx = 10;
-    wolf->raycaster.posy = 4.5;
+    wolf->raycaster.posx = 5;
+    wolf->raycaster.posy = 5;
     wolf->raycaster.dirx = -1;
     wolf->raycaster.diry = 0;
     wolf->raycaster.planex = 0;
     wolf->raycaster.planey = 0.66;
-    wolf->raycaster.ms = 0.04;
-    wolf->raycaster.rs = 0.03;
+    wolf->raycaster.ms = 0.06;
+    wolf->raycaster.rs = 0.05;
     wolf->raycaster.w_w = WINDW_W;
     wolf->raycaster.w_h = WINDW_H;
     wolf->quit = 1;
+    wolf->framenum = 0;
 }

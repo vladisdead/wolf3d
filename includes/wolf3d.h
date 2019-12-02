@@ -70,20 +70,19 @@ typedef struct		    s_wolf_raycaster
     double              w_h;
     double              w_w;
     double              oldplaney;
+    double              floorxwall;
+    double              floorywall;
+    double              distwall;
+    double              distplayer;
+    double              currentdist;
+    double              weight;
+    double              currentfloory;
+    double              currentfloorx;
+    int                 floortexx;
+    int                 floortexy;
     t_color_sdl         color;
     t_color_sdl         sight;
 }					    t_wolf_raycaster;
-
-typedef struct		    s_wolf_player
-{
-    double			    x;
-    double			    y;
-    double			    dirx;
-    double			    diry;
-    double			    movespeed;
-    double			    rotspeed;
-    char			    isrunning;
-}                       t_wolf_player;
 
 typedef struct		    s_wolf_m3d
 {
@@ -99,14 +98,17 @@ typedef struct		    s_wolf
     SDL_Renderer	    *renderer;
     int				    frame;
     t_wmap			    *map;
-    t_wolf_player		player;
     t_wolf_raycaster    raycaster;
     SDL_Texture		    *texture;
-    SDL_Texture		    *skybox;
     SDL_Surface         *surf;
     SDL_Surface         *brick;
-    SDL_Surface         *test;
-    double			    frametime;
+    SDL_Surface         *floor;
+    SDL_Surface         *ceil;
+    Uint32		        framenum;
+    Uint32              framelimit;
+    int                 fpsupdate;
+    int                 fpscurrent;
+    int                 fps;
     char			    quit;
     int				    mousex;
     int				    mousey;
@@ -165,5 +167,9 @@ void                    update(t_wolf *wolf);
 t_wolf                  init_sdl(void);
 void                    init_params_wolf(t_wolf *wolf);
 SDL_Surface		        *load_texture(char *path, t_wolf *wolf);
+void                    get_texture(t_wolf *wolf);
+static void fps_limit(t_wolf *wolf,  Uint32 framelimit);
+void    fps(t_wolf *wolf);
+void    fps_count(t_wolf *wolf);
 
 #endif
