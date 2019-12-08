@@ -49,8 +49,8 @@ void    get_texture(t_wolf *wolf)
 
 void    init_params_wolf(t_wolf *wolf)
 {
-    wolf->raycaster.posx = 5;
-    wolf->raycaster.posy = 5;
+    wolf->raycaster.posx = wolf->map->startY;
+    wolf->raycaster.posy = wolf->map->startX;
     wolf->raycaster.dirx = -1;
     wolf->raycaster.diry = 0;
     wolf->raycaster.planex = 0;

@@ -6,7 +6,7 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/11/26 18:36:54 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/08 12:56:56 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,26 @@ void    loop_hook(t_wolf *wolf)
 int main(int argc, char **argv)
 {
     t_wolf sdl;
-    argc = 1;
 
-    sdl = init_sdl();
-    sdl.map = init_map(argv[argc]);
+	sdl = init_sdl();
+    sdl.map = run_map(argc, argv);
+	////тестим мапу йоу
+	int x; int y;
+	y = 0;
+	while (y < sdl.map->mapHeight)
+	{
+		x = 0;
+		while (x < sdl.map->mapWidth)
+		{
+			printf ("%d|", sdl.map->map[y][x]);
+			x++;
+		}
+		printf ("\n");
+		y++;
+	}
+
+
+	////а тут уже не тестим
 
     init_params_wolf(&sdl);
     get_texture(&sdl);

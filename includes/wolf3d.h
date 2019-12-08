@@ -90,6 +90,13 @@ typedef struct		    s_wolf_m3d
     char			    name[1024];
 	int				    mapWidth;
 	int 			    mapHeight;
+	int 				startX;
+	int 				startY;
+	int 				fixable;
+	int 				tofix;
+	int 				map_width_differs;
+	int 				walls;
+	int 				pos;
 }					    t_wmap;
 
 typedef struct		    s_wolf
@@ -150,6 +157,17 @@ static int              count_digits(char *line);
 int                     count_data(char *arg, t_wmap *wolf);
 char                    ***get_buff(char *arg, t_wmap *wolf);
 int                     **interpret_buff(char *arg, t_wmap *wolf);
+void					print_error(int code);
+t_wmap					*run_map(int argc, char **argv);
+
+
+	/*validate && fix*/
+int 					find_walls(t_wmap *map);
+int 					find_player(t_wmap *map);
+void					find_zeroes(t_wmap *map);
+int						fix_position(t_wmap *map);
+int 					fix_walls(t_wmap *map);
+
     /*raycast*/
 void                    dda_init(t_wolf *wolf);
 void                    dda(t_wolf *wolf);
