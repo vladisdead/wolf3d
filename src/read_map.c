@@ -6,15 +6,16 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:18:39 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/06 16:04:50 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/12 16:59:57 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-////////////////ИННИТ МАП маллочит память размером t_wmap и запускает функции получения
-t_wmap *init_map(char *arg)
+
+t_wmap		*init_map(char *arg)
 {
 	t_wmap *wolf_map;
+
 	wolf_map = NULL;
 	if (!(wolf_map = (t_wmap*)ft_memalloc(sizeof(t_wmap))))
 		print_error(2);
@@ -28,8 +29,8 @@ t_wmap *init_map(char *arg)
 	print_error(4);
 	return (NULL);
 }
-//////////считает количество чисел, разделенных запятой, в строке
-static int count_digits(char *line)
+
+static int	count_digits(char *line)
 {
 	int i;
 	int result;
@@ -42,7 +43,7 @@ static int count_digits(char *line)
 	{
 		if (ft_isdigit(line[i]))
 			result++;
-		while(line[i] && line[i] != ',')
+		while (line[i] && line[i] != ',')
 			i++;
 		if (line[i] == ',')
 			i++;
@@ -50,12 +51,12 @@ static int count_digits(char *line)
 	return (result);
 }
 
-int count_data(char *arg, t_wmap *wolf)
+int			count_data(char *arg, t_wmap *wolf)
 {
-	int fd;
-	int ret;
-	int x_check;
-	char *line;
+	int		fd;
+	int		ret;
+	int		x_check;
+	char	*line;
 
 	x_check = 0;
 	ret = 1;
@@ -70,61 +71,58 @@ int count_data(char *arg, t_wmap *wolf)
 		}
 		else if (ret == 1)
 		{
-			x_check = count_digits(line);////считает числа
-			if (wolf->mapWidth > 0 && !wolf->map_width_differs)
-				wolf->map_width_differs = (wolf->mapWidth != x_check ? 1 : 0);////////указывает на различную длину строк
-			wolf->mapWidth = (wolf->mapWidth < x_check ? x_check : wolf->mapWidth);//////определяет ширину карты исходя из самой длинной строки.
-
-			wolf->mapHeight++;////////определяет высоту карты по количеству строк
+			x_check = count_digits(line);
+			if (wolf->mapW > 0 && !wolf->map_width_differs)
+				wolf->map_width_differs = (wolf->mapW != x_check ? 1 : 0);
+			wolf->mapW = (wolf->mapW < x_check ? x_check : wolf->mapW);
+			wolf->mapH++;
 			ft_strdel(&line);
 		}
 	}
 	close(fd);
-	if (wolf->mapWidth > 2 && wolf->mapHeight > 2)
-		return (0);//////all good
-	return (-1);//////data is incorrect
+	if (wolf->mapW > 2 && wolf->mapH > 2)
+		return (0);
+	return (-1);
 }
-//////////вытаскивает карту в такстовом виде
-char ***get_buff(char *arg, t_wmap *wolf)
-{
-	int fd;
-	int counter;
-	char *line;
-	char ***buff;
 
-	if (!(buff = (char***)ft_memalloc(sizeof(char**) * wolf->mapHeight)))
-		print_error(2);///////////БЛЯДЬ ЧО ЭТО ПОЧЕМУ РАБОТАЕТ ТО ВДРУГ Э ИЛИ НЕ РАБОТАЕТ Я ЧОТ НЕ ЕБУ
+char		***get_buff(char *arg, t_wmap *wolf)
+{
+	int		fd;
+	int		counter;
+	char	*line;
+	char	***buff;
+
+	if (!(buff = (char***)ft_memalloc(sizeof(char**) * wolf->mapH)))
+		print_error(2);
 	counter = 0;
 	fd = open(arg, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
-		buff[counter] = ft_strsplit(line, ',');////////ЗАМЕНИ НА ПРОБЕЛЫ
+		buff[counter] = ft_strsplit(line, ',');
 		free(line);
 		counter++;
 	}
 	close(fd);
 	return (buff);
 }
-/////////переводит текстовую карту в инты
-int **interpret_buff(char *arg, t_wmap *wolf)
+
+int			**interpret_buff(char *arg, t_wmap *wolf)
 {
-	char ***buff;
-	int **result;
-	int counter_x;
-	int counter_y;
+	char	***buff;
+	int		**result;
+	int		counter_x;
+	int		counter_y;
+
 	counter_y = 0;
 	if (!(buff = get_buff(arg, wolf)))
 		print_error(2);
-	result = (int**)ft_memalloc(sizeof(int*) * wolf->mapHeight);
-	if (!result)
+	if (!(result = (int**)ft_memalloc(sizeof(int*) * wolf->mapH)))
 		print_error(2);
-	while (counter_y < wolf->mapHeight)
+	while (counter_y < wolf->mapH && !(counter_x = 0))
 	{
-		counter_x = 0;
-		result[counter_y] = ft_memalloc(sizeof(int) * wolf->mapWidth);
-		if (!result[counter_y])
+		if (!(result[counter_y] = ft_memalloc(sizeof(int) * wolf->mapW)))
 			print_error(2);
-		while (counter_x < wolf->mapWidth)
+		while (counter_x < wolf->mapW)
 		{
 			result[counter_y][counter_x] = ft_atoi(buff[counter_y][counter_x]);
 			free(buff[counter_y][counter_x]);
