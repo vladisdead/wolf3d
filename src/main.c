@@ -49,24 +49,6 @@ int main(int argc, char **argv)
 
 	sdl = init_sdl();
     sdl.map = run_map(argc, argv);
-	////тестим мапу йоу
-	int x; int y;
-	y = 0;
-	while (y < sdl.map->mapHeight)
-	{
-		x = 0;
-		while (x < sdl.map->mapWidth)
-		{
-			printf ("%d|", sdl.map->map[y][x]);
-			x++;
-		}
-		printf ("\n");
-		y++;
-	}
-
-
-	////а тут уже не тестим
-
     init_params_wolf(&sdl);
     get_texture(&sdl);
     loop_hook(&sdl);
