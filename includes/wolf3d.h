@@ -1,7 +1,7 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include "libft.h"
-# include "SDL.h"
+# include "../SDL2/SDL2.framework/Headers/SDL.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -10,8 +10,8 @@
 # include <stdio.h>
 # include <math.h>
 # include <dirent.h>
-# define WINDW_H 900
-# define WINDW_W 900
+# define WINDW_W 800
+# define WINDW_H 800
 //#define mapWidth 24
 //#define mapHeight 24
 #define TEXT_W 64
@@ -90,8 +90,8 @@ typedef struct		    s_wolf_m3d
     char			    name[1024];
 	int				    mapWidth;
 	int 			    mapHeight;
-	int 				startX;
-	int 				startY;
+	double 				startX;
+	double 				startY;
 	int 				fixable;
 	int 				tofix;
 	int 				map_width_differs;

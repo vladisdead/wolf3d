@@ -1,15 +1,26 @@
 cmake_minimum_required(VERSION 3.14)
-project(FUCK C)
-
-set(CMAKE_C_STANARD 1)
-set(FLAGS "-O2")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FLAGS}")
-set(libft_inc
-        libft/)
-link_directories(libft/)
-link_directories(libgm/)
-find_package(SDL2 REQUIRED)
-include_directories(SDL2/ includes/ libft/ libgm/include)
-
-add_executable(FUCK main.c)
-target_link_libraries(FUCK ${SDL_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -llibft)
+project(wolf C)
+set(CMAKE_C_STANDARD 11)
+link_directories(
+        SDL2/
+        libft)
+include_directories(
+        SDL2/SDL2.framework/Headers
+        includes
+        libft)
+add_executable(wolf
+        src/drawer.c
+        src/init.c
+        src/keyhook.c
+        src/keyhook_utils.c
+        src/main.c
+        src/raycast.c
+        src/read_map.c
+        src/fps.c
+        src/validate.c
+        src/fix_map.c
+        src/run_map.c)
+target_link_libraries(wolf
+        "ft"
+        "-F ${PROJECT_SOURCE_DIR}/SDL2 -framework SDL2"
+        )

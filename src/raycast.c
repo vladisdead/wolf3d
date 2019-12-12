@@ -48,7 +48,7 @@ void    dda(t_wolf *wolf)
 
 void   init_ray(t_wolf *wolf, int x)
 {
-    wolf->raycaster.camerax = 2 * x / (double)WINDW_H - 1.0;
+    wolf->raycaster.camerax = 2 * x / (double)WINDW_H - (double)WINDW_W / (double)WINDW_H;
     wolf->raycaster.rayposx = wolf->raycaster.posx;
     wolf->raycaster.rayposy = wolf->raycaster.posy;
     wolf->raycaster.raydirx = wolf->raycaster.dirx + wolf->raycaster.planex * wolf->raycaster.camerax;

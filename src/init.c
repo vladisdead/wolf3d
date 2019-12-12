@@ -24,7 +24,7 @@ t_wolf      init_sdl(void)
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         exit(11);
     if (!(sdl.pwindow = SDL_CreateWindow("Wolf3D", SDL_WINDOWPOS_CENTERED,
-                                         SDL_WINDOWPOS_CENTERED, WINDW_W, WINDW_H, SDL_WINDOW_SHOWN)))
+                                         SDL_WINDOWPOS_CENTERED, WINDW_W, WINDW_H, SDL_WINDOW_OPENGL)))
         exit(22);
     if (!(sdl.renderer = SDL_CreateRenderer(sdl.pwindow, -1,0)))
         exit(33);
@@ -49,14 +49,14 @@ void    get_texture(t_wolf *wolf)
 
 void    init_params_wolf(t_wolf *wolf)
 {
-    wolf->raycaster.posx = wolf->map->startY;
-    wolf->raycaster.posy = wolf->map->startX;
+    wolf->raycaster.posx = wolf->map->startY + 0.5;
+    wolf->raycaster.posy = wolf->map->startX + 0.5;
     wolf->raycaster.dirx = -1;
     wolf->raycaster.diry = 0;
     wolf->raycaster.planex = 0;
     wolf->raycaster.planey = 0.66;
-    wolf->raycaster.ms = 0.06;
-    wolf->raycaster.rs = 0.05;
+    wolf->raycaster.ms = 0.1;
+    wolf->raycaster.rs = 0.1;
     wolf->raycaster.w_w = WINDW_W;
     wolf->raycaster.w_h = WINDW_H;
     wolf->quit = 1;

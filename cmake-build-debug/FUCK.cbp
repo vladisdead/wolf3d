@@ -5,91 +5,127 @@
 		<Option title="FUCK"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\MiniGW\;CMake Files\..\..\..\..\..\MiniGW\mingw64\;CMake Files\..\..\..\..\..\MiniGW\mingw64\lib\;CMake Files\..\..\..\..\..\MiniGW\mingw64\lib\cmake\;CMake Files\..\..\..\..\..\MiniGW\mingw64\lib\cmake\SDL2\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\.brew\;CMake Files\..\..\.brew\lib\;CMake Files\..\..\.brew\lib\cmake\;CMake Files\..\..\.brew\lib\cmake\SDL2\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug"/>
+				<Option working_dir="/Users/cmicha/Desktop/wolf3d/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FUCK">
-				<Option output="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/FUCK.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/SDL2"/>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/includes"/>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/libft"/>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/libgm/include"/>
-					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 FUCK"/>
-					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FUCK/fast">
-				<Option output="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/FUCK.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/SDL2"/>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/includes"/>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/libft"/>
-					<Add directory="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/libgm/include"/>
-					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="F:/Proggs/MiniGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 FUCK/fast"/>
-					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug"/>
+				<Option working_dir="/Users/cmicha/Desktop/wolf3d/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="F:/Proggs/MiniGW/mingw64/bin/mingw32-make.exe -f &quot;F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/cmicha/Desktop/wolf3d/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FUCK">
+				<Option output="/Users/cmicha/Desktop/wolf3d/cmake-build-debug/FUCK" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/cmicha/Desktop/wolf3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/SDL2"/>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/includes"/>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/libft"/>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/libgm/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 FUCK"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FUCK/fast">
+				<Option output="/Users/cmicha/Desktop/wolf3d/cmake-build-debug/FUCK" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/cmicha/Desktop/wolf3d/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/SDL2"/>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/includes"/>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/libft"/>
+					<Add directory="/Users/cmicha/Desktop/wolf3d/libgm/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 FUCK/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cmicha/Desktop/wolf3d/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/main.c">
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/drawer.c">
 			<Option target="FUCK"/>
 		</Unit>
-		<Unit filename="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/CMakeLists.txt">
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/fix_map.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/fps.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/init.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/keyhook.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/keyhook_utils.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/main.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/raycast.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/read_map.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/run_map.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/src/validate.c">
+			<Option target="FUCK"/>
+		</Unit>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="F:/Proggs/Vim/home/Vlad/VsCode/wolf3d/../../../../../MiniGW/mingw64/lib/cmake/SDL2/sdl2-config.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\MiniGW\mingw64\lib\cmake\SDL2\"/>
+		<Unit filename="/Users/cmicha/Desktop/wolf3d/../../.brew/lib/cmake/SDL2/sdl2-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\.brew\lib\cmake\SDL2\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

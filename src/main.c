@@ -39,7 +39,7 @@ void    loop_hook(t_wolf *wolf)
         wolf3d_inputs(key, wolf);
         update(wolf);
         fps(wolf);
-        wolf->framenum++;
+       // wolf->framenum++;
     }
 }
 

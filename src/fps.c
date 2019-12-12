@@ -6,7 +6,7 @@ void fps_limit(t_wolf *wolf, Uint32 framelimit)
 
     int max;
     ticks = SDL_GetTicks();
-    max = (1000 / 70);
+    max = (1000 / 60);
     if (framelimit < ticks)
         return ;
     if (framelimit > ticks + max)
@@ -34,6 +34,6 @@ void    fps_count(t_wolf *wolf)
 void    fps(t_wolf *wolf)
 {
     fps_limit(wolf, wolf->framelimit);
-    wolf->framelimit = SDL_GetTicks() + (1000 / 70);
+    wolf->framelimit = SDL_GetTicks() + (1000 / 60);
     fps_count(wolf);
 }
