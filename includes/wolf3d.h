@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 20:47:57 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/12 20:47:58 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,6 @@ void					init_ray(t_wolf *wolf, int x);
 void					raycast(t_wolf *wolf);
 void					wolf3d_destroy_graphics(t_wolf *wolf);
 void					loop_hook(t_wolf *wolf);
-void					sdl_pixel(t_wolf *wolf, int x, int y, uint32_t *color);
 void					draw_wall(int x, int start, int end, t_wolf *wolf);
 void					draw_sight(t_wolf *wolf);
 void					update(t_wolf *wolf);
