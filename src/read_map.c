@@ -70,15 +70,15 @@ int			count_data(char *arg, t_wmap *wolf)
 		else if (ret == 1)
 		{
 			x_check = count_digits(line);
-			if (wolf->mapW > 0 && !wolf->map_width_differs)
-				wolf->map_width_differs = (wolf->mapW != x_check ? 1 : 0);
-			wolf->mapW = (wolf->mapW < x_check ? x_check : wolf->mapW);
-			wolf->mapH++;
+			if (wolf->map_w > 0 && !wolf->map_width_differs)
+				wolf->map_width_differs = (wolf->map_w != x_check ? 1 : 0);
+			wolf->map_w = (wolf->map_w < x_check ? x_check : wolf->map_w);
+			wolf->map_h++;
 			ft_strdel(&line);
 		}
 	}
 	close(fd);
-	if (wolf->mapW > 2 && wolf->mapH > 2)
+	if (wolf->map_w > 2 && wolf->map_h > 2)
 		return (0);
 	return (-1);
 }
@@ -90,7 +90,7 @@ char		***get_buff(char *arg, t_wmap *wolf)
 	char	*line;
 	char	***buff;
 
-	if (!(buff = (char***)ft_memalloc(sizeof(char**) * wolf->mapH)))
+	if (!(buff = (char***)ft_memalloc(sizeof(char**) * wolf->map_h)))
 		print_error(2);
 	counter = 0;
 	fd = open(arg, O_RDONLY);
@@ -114,13 +114,13 @@ int			**interpret_buff(char *arg, t_wmap *wolf)
 	counter_y = 0;
 	if (!(buff = get_buff(arg, wolf)))
 		print_error(2);
-	if (!(result = (int**)ft_memalloc(sizeof(int*) * wolf->mapH)))
+	if (!(result = (int**)ft_memalloc(sizeof(int*) * wolf->map_h)))
 		print_error(2);
-	while (counter_y < wolf->mapH && !(counter_x = 0))
+	while (counter_y < wolf->map_h && !(counter_x = 0))
 	{
-		if (!(result[counter_y] = ft_memalloc(sizeof(int) * wolf->mapW)))
+		if (!(result[counter_y] = ft_memalloc(sizeof(int) * wolf->map_w)))
 			print_error(2);
-		while (counter_x < wolf->mapW)
+		while (counter_x < wolf->map_w)
 		{
 			result[counter_y][counter_x] = ft_atoi(buff[counter_y][counter_x]);
 			free(buff[counter_y][counter_x]);

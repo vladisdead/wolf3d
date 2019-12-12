@@ -6,31 +6,31 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:50:19 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/06 18:02:34 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/12 20:07:51 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		fix_position(t_wmap *map)
+int			fix_position(t_wmap *map)
 {
 	int	x;
 	int y;
 
 	y = 1;
-	if (map->startX && map->startY)
+	if (map->start_x && map->start_y)
 		return (0);
-	while (y < map->mapH)
+	while (y < map->map_h)
 	{
 		x = 1;
-		while (x < map->mapW)
+		while (x < map->map_w)
 		{
 			if (map->map[y][x] == 0)
 			{
-				if (map->startX == 0 || map->startY == 0)
+				if (map->start_x == 0 || map->start_y == 0)
 				{
-					map->startY = y;
-					map->startX = x;
+					map->start_y = y;
+					map->start_x = x;
 					return (0);
 				}
 			}
@@ -41,7 +41,7 @@ int		fix_position(t_wmap *map)
 	return (-1);
 }
 
-static int fix_line(int	*line, int max)
+static int	fix_line(int *line, int max)
 {
 	int x;
 
@@ -54,12 +54,12 @@ static int fix_line(int	*line, int max)
 	return (0);
 }
 
-static int fix_col(t_wmap *map, int x)
+static int	fix_col(t_wmap *map, int x)
 {
 	int y;
 
 	y = 0;
-	while (y < map->mapH)
+	while (y < map->map_h)
 	{
 		map->map[y][x] = 1;
 		y++;
@@ -67,10 +67,10 @@ static int fix_col(t_wmap *map, int x)
 	return (0);
 }
 
-int 	fix_walls(t_wmap *map)
+int			fix_walls(t_wmap *map)
 {
-	fix_line(map->map[0], map->mapW);
-	fix_line(map->map[map->mapH], map->mapW);
+	fix_line(map->map[0], map->map_w);
+	fix_line(map->map[map->map_h], map->map_w);
 	fix_col(map, 0);
-	fix_col(map, map->mapW);
+	fix_col(map, map->map_w);
 }

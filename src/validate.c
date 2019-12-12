@@ -6,13 +6,13 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:57:44 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/07 14:05:23 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/12 19:27:01 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-//////проверяет что есть хоть один ноль внутри стен
-void 	find_zeroes(t_wmap *map)
+
+void			find_zeroes(t_wmap *map)
 {
 	int x;
 	int y;
@@ -20,10 +20,10 @@ void 	find_zeroes(t_wmap *map)
 
 	y = 1;
 	zeroes = 0;
-	while (y < map->mapH - 1)
+	while (y < map->map_h - 1)
 	{
 		x = 1;
-		while (x < map->mapW - 1)
+		while (x < map->map_w - 1)
 		{
 			if (map->map[y][x] == 0)
 				zeroes++;
@@ -35,7 +35,7 @@ void 	find_zeroes(t_wmap *map)
 		print_error(4);
 }
 
-static int 	find_hor_wall(int *w_line, int max_length)
+static int		find_hor_wall(int *w_line, int max_length)
 {
 	int x;
 
@@ -49,12 +49,12 @@ static int 	find_hor_wall(int *w_line, int max_length)
 	return (0);
 }
 
-static	int find_ver_wall(t_wmap *map, int x)
+static int		find_ver_wall(t_wmap *map, int x)
 {
 	int y;
 
 	y = 0;
-	while (y < map->mapH)
+	while (y < map->map_h)
 	{
 		if (map->map[y][x] != 1)
 			return (-1);
@@ -62,12 +62,12 @@ static	int find_ver_wall(t_wmap *map, int x)
 	}
 	return (0);
 }
-///////чекает стены по сторонам статик функциями выше
-int 	find_walls(t_wmap *map)
+
+int				find_walls(t_wmap *map)
 {
-	if (find_hor_wall(map->map[0], map->mapW) == -1 ||
-	find_hor_wall(map->map[map->mapH - 1], map->mapW) == -1 ||
-	find_ver_wall(map, 0) == -1 || find_ver_wall(map, map->mapW - 1) == -1)
+	if (find_hor_wall(map->map[0], map->map_w) == -1 ||
+	find_hor_wall(map->map[map->map_h - 1], map->map_w) == -1 ||
+	find_ver_wall(map, 0) == -1 || find_ver_wall(map, map->map_w - 1) == -1)
 	{
 		map->fixable = 1;
 		return (-1);
@@ -75,8 +75,7 @@ int 	find_walls(t_wmap *map)
 	return (0);
 }
 
-//////находит 9 = позиция игрока, записывает ее в структуру, ретерн -1 при невалидном вводе или ее отсутствии, не ищет в наружных стенах
-int 	find_player(t_wmap *map)
+int				find_player(t_wmap *map)
 {
 	int x;
 	int y;
@@ -84,16 +83,16 @@ int 	find_player(t_wmap *map)
 
 	y = 1;
 	pos = 0;
-	while (y < map->mapH - 1)
+	while (y < map->map_h - 1)
 	{
 		x = 1;
-		while (x < map->mapW - 1)
+		while (x < map->map_w - 1)
 		{
 			if (map->map[y][x] == 9)
 			{
 				map->map[y][x] = 0;
-				map->startX = x;
-				map->startY = y;
+				map->start_x = x;
+				map->start_y = y;
 				pos++;
 			}
 			x++;
