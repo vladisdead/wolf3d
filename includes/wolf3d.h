@@ -88,8 +88,8 @@ typedef struct		    s_wolf_m3d
 {
     int			        **map;
     char			    name[1024];
-	int				    mapWidth;
-	int 			    mapHeight;
+	int				    mapW;
+	int 			    mapH;
 	double 				startX;
 	double 				startY;
 	int 				fixable;
