@@ -6,24 +6,23 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 20:17:36 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/06 17:47:23 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/12 19:24:16 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	print_error(int code)
+void			print_error(int code)
 {
-	if (code == 1)//////Код для USAGE
-		ft_putstr ("Usage: Wolf3d + optional -f + map\n");
-	else if (code == 2)/////invalid read
+	if (code == 1)
+		ft_putstr("Usage: Wolf3d + optional -f + map\n");
+	else if (code == 2)
 		ft_putstr_fd("Are you trying to SEGV me?\n", 2);
-	else if (code == 3)//////invalid map but fixable
+	else if (code == 3)
 		ft_putstr_fd("Invalid map, try -f or make a right one\n", 2);
-	else if (code == 4)//////uncool stuff
-		ft_putstr_fd("This map is so wrong I won't even try to fix it, no sir\n", 2);
+	else if (code == 4)
+		ft_putstr_fd("This map is so wrong I won't even try to fix it\n", 2);
 	exit(-1);
-
 }
 
 static void		validate_map(t_wmap *map)
@@ -43,7 +42,7 @@ static void		fix_map(t_wmap *map)
 		fix_position(map);
 }
 
-t_wmap	*run_map(int argc, char **argv)
+t_wmap			*run_map(int argc, char **argv)
 {
 	t_wmap	*map;
 
