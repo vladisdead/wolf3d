@@ -20,10 +20,10 @@ void 	find_zeroes(t_wmap *map)
 
 	y = 1;
 	zeroes = 0;
-	while (y < map->mapHeight - 1)
+	while (y < map->mapH - 1)
 	{
 		x = 1;
-		while (x < map->mapWidth - 1)
+		while (x < map->mapW - 1)
 		{
 			if (map->map[y][x] == 0)
 				zeroes++;
@@ -54,7 +54,7 @@ static	int find_ver_wall(t_wmap *map, int x)
 	int y;
 
 	y = 0;
-	while (y < map->mapHeight)
+	while (y < map->mapH)
 	{
 		if (map->map[y][x] != 1)
 			return (-1);
@@ -65,9 +65,9 @@ static	int find_ver_wall(t_wmap *map, int x)
 ///////чекает стены по сторонам статик функциями выше
 int 	find_walls(t_wmap *map)
 {
-	if (find_hor_wall(map->map[0], map->mapWidth) == -1 ||
-	find_hor_wall(map->map[map->mapHeight - 1], map->mapWidth) == -1 ||
-	find_ver_wall(map, 0) == -1 || find_ver_wall(map, map->mapWidth - 1) == -1)
+	if (find_hor_wall(map->map[0], map->mapW) == -1 ||
+	find_hor_wall(map->map[map->mapH - 1], map->mapW) == -1 ||
+	find_ver_wall(map, 0) == -1 || find_ver_wall(map, map->mapW - 1) == -1)
 	{
 		map->fixable = 1;
 		return (-1);
@@ -84,10 +84,10 @@ int 	find_player(t_wmap *map)
 
 	y = 1;
 	pos = 0;
-	while (y < map->mapHeight - 1)
+	while (y < map->mapH - 1)
 	{
 		x = 1;
-		while (x < map->mapWidth - 1)
+		while (x < map->mapW - 1)
 		{
 			if (map->map[y][x] == 9)
 			{
