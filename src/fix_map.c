@@ -20,10 +20,10 @@ int		fix_position(t_wmap *map)
 	y = 1;
 	if (map->startX && map->startY)
 		return (0);
-	while (y < map->mapHeight)
+	while (y < map->mapH)
 	{
 		x = 1;
-		while (x < map->mapWidth)
+		while (x < map->mapW)
 		{
 			if (map->map[y][x] == 0)
 			{
@@ -59,7 +59,7 @@ static int fix_col(t_wmap *map, int x)
 	int y;
 
 	y = 0;
-	while (y < map->mapHeight)
+	while (y < map->mapH)
 	{
 		map->map[y][x] = 1;
 		y++;
@@ -69,8 +69,8 @@ static int fix_col(t_wmap *map, int x)
 
 int 	fix_walls(t_wmap *map)
 {
-	fix_line(map->map[0], map->mapWidth);
-	fix_line(map->map[map->mapHeight], map->mapWidth);
+	fix_line(map->map[0], map->mapW);
+	fix_line(map->map[map->mapH], map->mapW);
 	fix_col(map, 0);
-	fix_col(map, map->mapWidth);
+	fix_col(map, map->mapW);
 }
