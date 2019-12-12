@@ -1,39 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fps.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/12 20:53:40 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/12 20:54:07 by cyuriko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-void fps_limit(t_wolf *wolf, Uint32 framelimit)
+void	fps_limit(t_wolf *wolf, Uint32 framelimit)
 {
-    Uint32 ticks;
+	Uint32	ticks;
+	int		max;
 
-    int max;
-    ticks = SDL_GetTicks();
-    max = (1000 / 60);
-    if (framelimit < ticks)
-        return ;
-    if (framelimit > ticks + max)
-        SDL_Delay(max);
-    else
-        SDL_Delay(framelimit - ticks);
+	ticks = SDL_GetTicks();
+	max = (1000 / 60);
+	if (framelimit < ticks)
+		return ;
+	if (framelimit > ticks + max)
+		SDL_Delay(max);
+	else
+		SDL_Delay(framelimit - ticks);
 }
 
-void    fps_count(t_wolf *wolf)
+void	fps_count(t_wolf *wolf)
 {
-    char *fps;
+	char *fps;
 
-    if ((wolf->fpsupdate = SDL_GetTicks()) - wolf->fpscurrent >= 1000)
-    {
-        fps = malloc(sizeof(char*) * 2);
-        wolf->fpscurrent = wolf->fpsupdate;
-        fps = ft_itoa(wolf->fps);
-        SDL_SetWindowTitle(wolf->pwindow, fps);
-        free(fps);
-        wolf->fps = 0;
-    }
-    ++wolf->fps;
+	if ((wolf->fpsupdate = SDL_GetTicks()) - wolf->fpscurrent >= 1000)
+	{
+		fps = malloc(sizeof(char*) * 2);
+		wolf->fpscurrent = wolf->fpsupdate;
+		fps = ft_itoa(wolf->fps);
+		SDL_SetWindowTitle(wolf->pwindow, fps);
+		free(fps);
+		wolf->fps = 0;
+	}
+	++wolf->fps;
 }
 
-void    fps(t_wolf *wolf)
+void	fps(t_wolf *wolf)
 {
-    fps_limit(wolf, wolf->framelimit);
-    wolf->framelimit = SDL_GetTicks() + (1000 / 60);
-    fps_count(wolf);
+	fps_limit(wolf, wolf->framelimit);
+	wolf->framelimit = SDL_GetTicks() + (1000 / 60);
+	fps_count(wolf);
 }

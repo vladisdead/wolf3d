@@ -6,14 +6,13 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:15:49 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 20:16:24 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/12 20:59:01 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		put_pixel(SDL_Surface *surf, const int x, const int y,
-		Uint32 color)
+void		put_pixel(SDL_Surface *surf, const int x, const int y, Uint32 color)
 {
 	Uint32		*pixels;
 
@@ -45,27 +44,14 @@ Uint32		read_pixel(SDL_Surface *surface, const int x, const int y)
 	return (0);
 }
 
-void		sdl_pixel(t_wolf *wolf, int x, int y, uint32_t *color)
-{
-	unsigned char *pixels;
-	int width;
-
-	pixels = (unsigned char *)wolf->surf->pixels;
-	unsigned char *tmp = (unsigned char*)&color;
-	width = wolf->surf->w;
-	if (x < 0 && x >= wolf->surf->w)
-		return ;
-	if (y < 0 && y >= wolf->surf->h)
-		return ;
-	pixels[4 * (y * width + x) + 0] = *color;
-}
-
 void		draw_wall(int x, int start, int end, t_wolf *wolf)
 {
 	if (wolf->raycaster.side == 0)
-		wolf->raycaster.wallx = wolf->raycaster.rayposy + wolf->raycaster.perpwalldist * wolf->raycaster.raydiry;
+		wolf->raycaster.wallx = wolf->raycaster.rayposy +
+				wolf->raycaster.perpwalldist * wolf->raycaster.raydiry;
 	else
-		wolf->raycaster.wallx = wolf->raycaster.rayposx + wolf->raycaster.perpwalldist * wolf->raycaster.raydirx;
+		wolf->raycaster.wallx = wolf->raycaster.rayposx +
+				wolf->raycaster.perpwalldist * wolf->raycaster.raydirx;
 	wolf->raycaster.wallx -= floor(wolf->raycaster.wallx);
 	wolf->texx = (int)(wolf->raycaster.wallx * (double)TEXT_W);
 	if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx > 0)
@@ -74,7 +60,8 @@ void		draw_wall(int x, int start, int end, t_wolf *wolf)
 		wolf->texx = TEXT_W - wolf->texx - 1;
 	while (++start < end)
 	{
-		wolf->d = start * 256 - WINDW_H * 128 + wolf->raycaster.lineheight * 128;
+		wolf->d = start * 256 - WINDW_H * 128 +
+				wolf->raycaster.lineheight * 128;
 		wolf->texy = ((wolf->d * TEXT_H) / wolf->raycaster.lineheight) / 256;
 		put_pixel(wolf->surf, x, start,
 				read_pixel(wolf->brick, wolf->texx, wolf->texy));
@@ -116,11 +103,8 @@ void		draw_sight(t_wolf *wolf)
 		wolf->raycaster.currentfloory = wolf->raycaster.weight * wolf->raycaster.floorywall + (1.0 - wolf->raycaster.weight) * wolf->raycaster.posy;
 		wolf->raycaster.floortexx = (int)(wolf->raycaster.currentfloorx * TEXT_W) % TEXT_W;
 		wolf->raycaster.floortexy = (int)(wolf->raycaster.currentfloory * TEXT_H) % TEXT_H;
-		put_pixel(wolf->surf, wolf->raycaster.x, wolf->raycaster.y, read_pixel(wolf->floor,
-				wolf->raycaster.floortexx, wolf->raycaster.floortexy));
-		put_pixel(wolf->surf, wolf->raycaster.x, WINDW_H -
-		wolf->raycaster.y, read_pixel(wolf->ceil, wolf->raycaster.floortexx,
-				wolf->raycaster.floortexy));
+		put_pixel(wolf->surf, wolf->raycaster.x, wolf->raycaster.y, read_pixel(wolf->floor, wolf->raycaster.floortexx, wolf->raycaster.floortexy));
+		put_pixel(wolf->surf, wolf->raycaster.x, WINDW_H - wolf->raycaster.y, read_pixel(wolf->ceil, wolf->raycaster.floortexx, wolf->raycaster.floortexy));
 	}
 }
 
