@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:18:39 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 16:59:57 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/12 17:59:20 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ t_wmap		*init_map(char *arg)
 {
 	t_wmap *wolf_map;
 
-	wolf_map = NULL;
 	if (!(wolf_map = (t_wmap*)ft_memalloc(sizeof(t_wmap))))
-		print_error(2);
+		print_error(5);
 	if (!count_data(arg, wolf_map))
 	{
 		wolf_map->map = interpret_buff(arg, wolf_map);
@@ -43,9 +42,9 @@ static int	count_digits(char *line)
 	{
 		if (ft_isdigit(line[i]))
 			result++;
-		while (line[i] && line[i] != ',')
+		while (line[i] && line[i] != ' ')
 			i++;
-		if (line[i] == ',')
+		if (line[i] == ' ')
 			i++;
 	}
 	return (result);
@@ -58,7 +57,6 @@ int			count_data(char *arg, t_wmap *wolf)
 	int		x_check;
 	char	*line;
 
-	x_check = 0;
 	ret = 1;
 	fd = open(arg, O_RDONLY);
 	while (ret == 1)
@@ -67,7 +65,7 @@ int			count_data(char *arg, t_wmap *wolf)
 		if (ret == -1)
 		{
 			close(fd);
-			return (-1);
+			print_error(2);
 		}
 		else if (ret == 1)
 		{
@@ -98,7 +96,7 @@ char		***get_buff(char *arg, t_wmap *wolf)
 	fd = open(arg, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
-		buff[counter] = ft_strsplit(line, ',');
+		buff[counter] = ft_strsplit(line, ' ');
 		free(line);
 		counter++;
 	}
