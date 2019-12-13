@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 20:17:36 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 17:06:21 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/12/13 18:20:28 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,17 @@ void			init_params_wolf(t_wolf *wolf)
 	wolf->ray.w_h = W_H;
 	wolf->quit = 1;
 	wolf->framenum = 0;
+}
+
+int				init_music(t_wolf *wolf)
+{
+	SDL_AudioSpec	wav_spec;
+	Uint32			wav_length;
+
+	SDL_LoadWAV("../resources/wolves.wav", &wav_spec,
+			&wolf->wav_buffer, &wav_length);
+	wolf->device_id = SDL_OpenAudioDevice(NULL, 0, &wav_spec, NULL, 0);
+	SDL_QueueAudio(wolf->device_id, wolf->wav_buffer, wav_length);
+	SDL_PauseAudioDevice(wolf->device_id, 0);
+	return (0);
 }

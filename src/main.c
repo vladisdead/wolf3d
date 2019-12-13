@@ -6,7 +6,7 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/12/13 17:11:03 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/12/13 18:19:42 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	update(t_wolf *wolf)
 {
-	wolf->texture =  SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
+	wolf->texture = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
 	SDL_RenderCopy(wolf->renderer, wolf->texture, NULL, NULL);
 	SDL_DestroyTexture(wolf->texture);
 	SDL_RenderPresent(wolf->renderer);
@@ -28,6 +28,8 @@ void	wolf3d_destroy_graphics(t_wolf *wolf)
 	SDL_DestroyWindow(wolf->pwindow);
 	wolf->pwindow = NULL;
 	wolf->renderer = NULL;
+	SDL_CloseAudioDevice(wolf->device_id);
+	SDL_FreeWAV(wolf->wav_buffer);
 	SDL_Quit();
 }
 
@@ -59,6 +61,7 @@ int		main(int argc, char **argv)
 	sdl = init_sdl(map);
 	init_params_wolf(&sdl);
 	get_texture(&sdl);
+	init_music(&sdl);
 	loop_hook(&sdl);
 	wolf3d_destroy_graphics(&sdl);
 	return (0);

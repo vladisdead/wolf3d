@@ -21,7 +21,6 @@ t_wmap		*init_map(char *arg)
 	if (!count_data(arg, wolf_map))
 	{
 		wolf_map->map = interpret_buff(arg, wolf_map);
-		ft_strcpy(wolf_map->name, arg);
 		return (wolf_map);
 	}
 	free(wolf_map);
