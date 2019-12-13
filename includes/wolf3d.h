@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 20:47:58 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 14:22:13 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,18 +154,15 @@ typedef struct			s_line
 }						t_line;
 
 void					raycast(t_wolf *wolf);
-static void				wolf3d_key_up(const unsigned char *keystate,
-		t_wolf *wolf);
-static void				wolf3d_key_down(const unsigned char *keystate,
-		t_wolf *wolf);
-static void				wolf3d_key_left(t_wolf *wolf);
-static void				wolf3d_key_right(t_wolf *wolf);
+void					wolf3d_key_up(t_wolf *wolf);
+void					wolf3d_key_down(t_wolf *wolf);
+void					wolf3d_key_left(t_wolf *wolf);
+void					wolf3d_key_right(t_wolf *wolf);
 void					wolf3d_inputs(const unsigned char *keystate,
 		t_wolf *wolf);
 void					key_hook(SDL_Event *ev, t_wolf *wolf);
 void					event(SDL_Event *ev, t_wolf *wolf);
 t_wmap					*init_map(char *arg);
-static int				count_digits(char *line);
 int						count_data(char *arg, t_wmap *wolf);
 char					***get_buff(char *arg, t_wmap *wolf);
 int						**interpret_buff(char *arg, t_wmap *wolf);
@@ -189,8 +186,9 @@ t_wolf					init_sdl(void);
 void					init_params_wolf(t_wolf *wolf);
 SDL_Surface				*load_texture(char *path, t_wolf *wolf);
 void					get_texture(t_wolf *wolf);
-static void				fps_limit(t_wolf *wolf, Uint32 framelimit);
+void					fps_limit(Uint32 framelimit);
 void					fps(t_wolf *wolf);
 void					fps_count(t_wolf *wolf);
+void					check_length(int x_check, int length, int fd);
 
 #endif
