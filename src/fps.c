@@ -12,7 +12,7 @@
 
 #include "wolf3d.h"
 
-void	fps_limit(t_wolf *wolf, Uint32 framelimit)
+void	fps_limit(Uint32 framelimit)
 {
 	Uint32	ticks;
 	int		max;
@@ -45,7 +45,7 @@ void	fps_count(t_wolf *wolf)
 
 void	fps(t_wolf *wolf)
 {
-	fps_limit(wolf, wolf->framelimit);
+	fps_limit(wolf->framelimit);
 	wolf->framelimit = SDL_GetTicks() + (1000 / 60);
 	fps_count(wolf);
 }

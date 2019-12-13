@@ -12,7 +12,7 @@
 
 #include "wolf3d.h"
 
-void	wolf3d_key_up(const unsigned char *keystate, t_wolf *wolf)
+void	wolf3d_key_up(t_wolf *wolf)
 {
 	if ((wolf->map->map[(int)(wolf->raycaster.posx + wolf->raycaster.dirx *
 	wolf->raycaster.ms)][(int)wolf->raycaster.posy]) == 0 &&
@@ -34,7 +34,7 @@ void	wolf3d_key_up(const unsigned char *keystate, t_wolf *wolf)
 	}
 }
 
-void	wolf3d_key_down(const unsigned char *keystate, t_wolf *wolf)
+void	wolf3d_key_down(t_wolf *wolf)
 {
 	if ((wolf->map->map[(int)(wolf->raycaster.posx - wolf->raycaster.dirx *
 	wolf->raycaster.ms)][(int)wolf->raycaster.posy] == 0)
@@ -85,9 +85,9 @@ void	wolf3d_inputs(const unsigned char *keystate, t_wolf *wolf)
 	if (keystate[SDL_SCANCODE_ESCAPE])
 		wolf->quit = 0;
 	if (keystate[SDL_SCANCODE_UP])
-		wolf3d_key_up(keystate, wolf);
+		wolf3d_key_up(wolf);
 	if (keystate[SDL_SCANCODE_DOWN])
-		wolf3d_key_down(keystate, wolf);
+		wolf3d_key_down(wolf);
 	if (keystate[SDL_SCANCODE_RIGHT])
 		wolf3d_key_right(wolf);
 	if (keystate[SDL_SCANCODE_LEFT])

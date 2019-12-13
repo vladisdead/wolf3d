@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:50:19 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 20:07:51 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 14:29:47 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,19 @@ int			fix_walls(t_wmap *map)
 	fix_line(map->map[map->map_h], map->map_w);
 	fix_col(map, 0);
 	fix_col(map, map->map_w);
+	return (0);
+}
+
+void		check_length(int x_check, int length, int fd)
+{
+	if (x_check == -1)
+	{
+		close(fd);
+		print_error(2);
+	}
+	else if (length != -1 && x_check != length)
+	{
+		close(fd);
+		print_error(5);
+	}
 }

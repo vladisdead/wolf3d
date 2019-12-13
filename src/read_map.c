@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:18:39 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 17:59:20 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 14:28:31 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int			count_data(char *arg, t_wmap *wolf)
 {
 	int		fd;
 	int		ret;
-	int		x_check;
 	char	*line;
 
 	ret = 1;
@@ -62,17 +61,13 @@ int			count_data(char *arg, t_wmap *wolf)
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &line);
-		if (ret == -1)
+		check_length(ret, -1, fd);
+		if (ret == 1)
 		{
-			close(fd);
-			print_error(2);
-		}
-		else if (ret == 1)
-		{
-			x_check = count_digits(line);
-			if (wolf->map_w > 0 && !wolf->map_width_differs)
-				wolf->map_width_differs = (wolf->map_w != x_check ? 1 : 0);
-			wolf->map_w = (wolf->map_w < x_check ? x_check : wolf->map_w);
+			if (!wolf->map_w)
+				wolf->map_w = count_digits(line);
+			else
+				check_length(wolf->map_w, count_digits(line), fd);
 			wolf->map_h++;
 			ft_strdel(&line);
 		}
