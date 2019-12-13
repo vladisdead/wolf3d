@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:50:19 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 14:29:47 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 14:30:19 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	fix_col(t_wmap *map, int x)
 int			fix_walls(t_wmap *map)
 {
 	fix_line(map->map[0], map->map_w);
-	fix_line(map->map[map->map_h], map->map_w);
+	fix_line(map->map[map->map_h - 1], map->map_w);
 	fix_col(map, 0);
 	fix_col(map, map->map_w);
 	return (0);

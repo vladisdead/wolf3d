@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 20:17:36 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 14:05:00 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 14:42:05 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			print_error(int code)
 	else if (code == 4)
 		ft_putstr_fd("This map is so wrong I won't even try to fix it\n", 2);
 	else if (code == 5)
-		ft_putstr_fd("lines in map should have equal length\n", 2);
+		ft_putstr_fd("non-equal lines or wrong symbols\n", 2);
 	exit(-1);
 }
 
