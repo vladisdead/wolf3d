@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:15:49 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 20:59:01 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 16:26:36 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,79 +46,80 @@ Uint32		read_pixel(SDL_Surface *surface, const int x, const int y)
 
 void		draw_wall(int x, int start, int end, t_wolf *wolf)
 {
-	if (wolf->raycaster.side == 0)
-		wolf->raycaster.wallx = wolf->raycaster.rayposy +
-				wolf->raycaster.perpwalldist * wolf->raycaster.raydiry;
+	if (wolf->ray.side == 0)
+		wolf->ray.wallx = wolf->ray.rposy +
+				wolf->ray.pwd * wolf->ray.rdy;
 	else
-		wolf->raycaster.wallx = wolf->raycaster.rayposx +
-				wolf->raycaster.perpwalldist * wolf->raycaster.raydirx;
-	wolf->raycaster.wallx -= floor(wolf->raycaster.wallx);
-	wolf->texx = (int)(wolf->raycaster.wallx * (double)TEXT_W);
-	if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx > 0)
-		wolf->texx = TEXT_W - wolf->texx - 1;
-	if (wolf->raycaster.side == 1 && wolf->raycaster.raydiry < 0)
-		wolf->texx = TEXT_W - wolf->texx - 1;
+		wolf->ray.wallx = wolf->ray.rposx +
+				wolf->ray.pwd * wolf->ray.rdx;
+	wolf->ray.wallx -= floor(wolf->ray.wallx);
+	wolf->texx = (int)(wolf->ray.wallx * (double)T_W);
+	if (wolf->ray.side == 0 && wolf->ray.rdx > 0)
+		wolf->texx = T_W - wolf->texx - 1;
+	if (wolf->ray.side == 1 && wolf->ray.rdy < 0)
+		wolf->texx = T_W - wolf->texx - 1;
 	while (++start < end)
 	{
-		wolf->d = start * 256 - WINDW_H * 128 +
-				wolf->raycaster.lineheight * 128;
-		wolf->texy = ((wolf->d * TEXT_H) / wolf->raycaster.lineheight) / 256;
+		wolf->d = start * 256 - W_H * 128 +
+				wolf->ray.lineheight * 128;
+		wolf->texy = ((wolf->d * T_H) / wolf->ray.lineheight) / 256;
 		put_pixel(wolf->surf, x, start,
 				read_pixel(wolf->brick, wolf->texx, wolf->texy));
 	}
 }
 
-void		draw_sight(t_wolf *wolf)
+void		floor_ceil(t_wolf *wolf)
 {
-	if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx > 0)
+	if (wolf->ray.side == 0 && wolf->ray.rdx > 0)
 	{
-		wolf->raycaster.floorxwall = wolf->raycaster.mapx;
-		wolf->raycaster.floorywall = wolf->raycaster.wallx + wolf->raycaster.mapy;
+		wolf->ray.fxwall = wolf->ray.mapx;
+		wolf->ray.fywall = wolf->ray.wallx
+				+ wolf->ray.mapy;
 	}
-	else if (wolf->raycaster.side == 0 && wolf->raycaster.raydirx < 0)
+	else if (wolf->ray.side == 0 && wolf->ray.rdx < 0)
 	{
-		wolf->raycaster.floorxwall = wolf->raycaster.mapx + 1.0;
-		wolf->raycaster.floorywall = wolf->raycaster.mapy + wolf->raycaster.wallx;
+		wolf->ray.fxwall = wolf->ray.mapx + 1.0;
+		wolf->ray.fywall = wolf->ray.mapy
+				+ wolf->ray.wallx;
 	}
-	else if (wolf->raycaster.side == 1 && wolf->raycaster.raydiry > 0)
+	else if (wolf->ray.side == 1 && wolf->ray.rdy > 0)
 	{
-		wolf->raycaster.floorxwall = wolf->raycaster.mapx + wolf->raycaster.wallx;
-		wolf->raycaster.floorywall = wolf->raycaster.mapy;
+		wolf->ray.fxwall = wolf->ray.mapx
+				+ wolf->ray.wallx;
+		wolf->ray.fywall = wolf->ray.mapy;
 	}
 	else
 	{
-		wolf->raycaster.floorxwall = wolf->raycaster.mapx + wolf->raycaster.wallx;
-		wolf->raycaster.floorywall = wolf->raycaster.mapy + 1.0;
-	}
-	wolf->raycaster.distwall = wolf->raycaster.perpwalldist;
-	wolf->raycaster.distplayer = 0.0;
-	if (wolf->raycaster.drawend < 0)
-		wolf->raycaster.drawend = WINDW_H;
-	wolf->raycaster.y = wolf->raycaster.drawend - 1;
-	while (++wolf->raycaster.y < WINDW_H)
-	{
-		wolf->raycaster.currentdist = WINDW_H / (2.0 * wolf->raycaster.y - WINDW_H);
-		wolf->raycaster.weight = (wolf->raycaster.currentdist - wolf->raycaster.distplayer) / (wolf->raycaster.distwall - wolf->raycaster.distplayer);
-		wolf->raycaster.currentfloorx = wolf->raycaster.weight * wolf->raycaster.floorxwall + (1.0 - wolf->raycaster.weight) * wolf->raycaster.posx;
-		wolf->raycaster.currentfloory = wolf->raycaster.weight * wolf->raycaster.floorywall + (1.0 - wolf->raycaster.weight) * wolf->raycaster.posy;
-		wolf->raycaster.floortexx = (int)(wolf->raycaster.currentfloorx * TEXT_W) % TEXT_W;
-		wolf->raycaster.floortexy = (int)(wolf->raycaster.currentfloory * TEXT_H) % TEXT_H;
-		put_pixel(wolf->surf, wolf->raycaster.x, wolf->raycaster.y, read_pixel(wolf->floor, wolf->raycaster.floortexx, wolf->raycaster.floortexy));
-		put_pixel(wolf->surf, wolf->raycaster.x, WINDW_H - wolf->raycaster.y, read_pixel(wolf->ceil, wolf->raycaster.floortexx, wolf->raycaster.floortexy));
+		wolf->ray.fxwall = wolf->ray.mapx
+				+ wolf->ray.wallx;
+		wolf->ray.fywall = wolf->ray.mapy + 1.0;
 	}
 }
 
-void		update(t_wolf *wolf)
+void		draw_sight(t_wolf *wolf)
 {
-	SDL_Rect dstrect;
-
-	dstrect.x = 0;
-	dstrect.y = 0;
-	dstrect.w = wolf->surf->w;
-	dstrect.h = wolf->surf->h;
-	wolf->texture = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
-	SDL_RenderCopy(wolf->renderer, wolf->texture, NULL, &dstrect);
-	SDL_DestroyTexture(wolf->texture);
-	SDL_RenderPresent(wolf->renderer);
-	SDL_FillRect(wolf->surf, NULL, 0x00);
+	floor_ceil(wolf);
+	wolf->ray.dwall = wolf->ray.pwd;
+	wolf->ray.dplayer = 0.0;
+	if (wolf->ray.drawend < 0)
+		wolf->ray.drawend = W_H;
+	wolf->ray.y = wolf->ray.drawend - 1;
+	while (++wolf->ray.y < W_H)
+	{
+		wolf->ray.cdist = W_H / (2.0 * wolf->ray.y - W_H);
+		wolf->ray.w = (wolf->ray.cdist - wolf->ray.dplayer)
+				/ (wolf->ray.dwall - wolf->ray.dplayer);
+		wolf->ray.cfloorx = wolf->ray.w * wolf->ray.fxwall
+				+ (1.0 - wolf->ray.w) * wolf->ray.posx;
+		wolf->ray.cfloory = wolf->ray.w * wolf->ray.fywall
+				+ (1.0 - wolf->ray.w) * wolf->ray.posy;
+		wolf->ray.ftexx = (int)(wolf->ray.cfloorx * T_W) % T_W;
+		wolf->ray.ftexy = (int)(wolf->ray.cfloory * T_H) % T_H;
+		put_pixel(wolf->surf, wolf->ray.x, wolf->ray.y,
+				read_pixel(wolf->floor, wolf->ray.ftexx,
+						wolf->ray.ftexy));
+		put_pixel(wolf->surf, wolf->ray.x, W_H - wolf->ray.y,
+				read_pixel(wolf->ceil, wolf->ray.ftexx,
+						wolf->ray.ftexy));
+	}
 }

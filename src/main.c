@@ -6,11 +6,26 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/12/13 15:18:35 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 16:49:56 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	update(t_wolf *wolf)
+{
+	SDL_Rect dstrect;
+
+	dstrect.x = 0;
+	dstrect.y = 0;
+	dstrect.w = wolf->surf->w;
+	dstrect.h = wolf->surf->h;
+	wolf->texture = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
+	SDL_RenderCopy(wolf->renderer, wolf->texture, NULL, &dstrect);
+	SDL_DestroyTexture(wolf->texture);
+	SDL_RenderPresent(wolf->renderer);
+	SDL_FillRect(wolf->surf, NULL, 0x00);
+}
 
 void	wolf3d_destroy_graphics(t_wolf *wolf)
 {
@@ -36,9 +51,9 @@ void	loop_hook(t_wolf *wolf)
 		raycast(wolf);
 		wolf3d_inputs(key, wolf);
 		update(wolf);
-		fps(wolf);
 		if (ev.type == SDL_QUIT)
 			wolf->quit = 0;
+		fps(wolf);
 	}
 }
 

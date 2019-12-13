@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:53:40 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/12 20:54:07 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 15:42:19 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	fps_count(t_wolf *wolf)
 
 	if ((wolf->fpsupdate = SDL_GetTicks()) - wolf->fpscurrent >= 1000)
 	{
-		fps = malloc(sizeof(char*) * 2);
 		wolf->fpscurrent = wolf->fpsupdate;
 		fps = ft_itoa(wolf->fps);
 		SDL_SetWindowTitle(wolf->pwindow, fps);

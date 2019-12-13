@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 15:15:32 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 16:32:46 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,29 @@
 # include <stdio.h>
 # include <math.h>
 # include <dirent.h>
-# define WINDW_W 800
-# define WINDW_H 800
-# define TEXT_W 64
-# define TEXT_H 64
-
-typedef struct			s_color_sdl
-{
-	unsigned char		r;
-	unsigned char		g;
-	unsigned char		b;
-	unsigned char		a;
-}						t_color_sdl;
+# define W_W 800
+# define W_H 800
+# define T_W 64
+# define T_H 64
 
 typedef struct			s_wolf_raycaster
 {
 	double				planex;
 	double				planey;
 	double				camerax;
-	double				rayposx;
-	double				rayposy;
+	double				rposx;
+	double				rposy;
 	int					x;
 	int					y;
-	double				raydirx;
-	double				raydiry;
+	double				rdx;
+	double				rdy;
 	int					mapx;
 	int					mapy;
 	double				sidedistx;
 	double				sidedisty;
-	double				deltadistx;
-	double				deltadisty;
-	double				perpwalldist;
+	double				ddistx;
+	double				ddisty;
+	double				pwd;
 	int					stepx;
 	int					stepy;
 	int					hit;
@@ -70,28 +62,22 @@ typedef struct			s_wolf_raycaster
 	double				oldtime;
 	double				ms;
 	double				rs;
-	double				move_up;
-	double				move_down;
-	double				move_left;
-	double				move_right;
 	double				olddirx;
 	double				olddiry;
 	double				oldplanex;
 	double				w_h;
 	double				w_w;
 	double				oldplaney;
-	double				floorxwall;
-	double				floorywall;
-	double				distwall;
-	double				distplayer;
-	double				currentdist;
-	double				weight;
-	double				currentfloory;
-	double				currentfloorx;
-	int					floortexx;
-	int					floortexy;
-	t_color_sdl			color;
-	t_color_sdl			sight;
+	double				fxwall;
+	double				fywall;
+	double				dwall;
+	double				dplayer;
+	double				cdist;
+	double				w;
+	double				cfloory;
+	double				cfloorx;
+	int					ftexx;
+	int					ftexy;
 }						t_wolf_raycaster;
 
 typedef struct			s_wolf_m3d
@@ -115,7 +101,7 @@ typedef struct			s_wolf
 	SDL_Renderer		*renderer;
 	int					frame;
 	t_wmap				*map;
-	t_wolf_raycaster	raycaster;
+	t_wolf_raycaster	ray;
 	SDL_Texture			*texture;
 	SDL_Surface			*surf;
 	SDL_Surface			*brick;
@@ -133,25 +119,6 @@ typedef struct			s_wolf
 	int					texy;
 	int					d;
 }						t_wolf;
-
-typedef struct			s_point
-{
-	int					x;
-	int					y;
-	int					z;
-	int					color;
-}						t_point;
-
-typedef struct			s_line
-{
-	t_point				start;
-	t_point				end;
-	t_point				point;
-	t_point				delta;
-	int					steep;
-	int					error;
-	int					ystep;
-}						t_line;
 
 void					raycast(t_wolf *wolf);
 void					wolf3d_key_up(t_wolf *wolf);
@@ -190,5 +157,6 @@ void					fps_limit(Uint32 framelimit);
 void					fps(t_wolf *wolf);
 void					fps_count(t_wolf *wolf);
 void					check_length(int x_check, int length, int fd);
+void					floor_ceil(t_wolf *wolf);
 
 #endif

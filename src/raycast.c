@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 21:09:33 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 15:10:50 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 16:49:56 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,96 +14,107 @@
 
 void		dda_init(t_wolf *wolf)
 {
-	if (wolf->raycaster.raydirx < 0)
+	if (wolf->ray.rdx < 0)
 	{
-		wolf->raycaster.stepx = -1;
-		wolf->raycaster.sidedistx = (wolf->raycaster.rayposx -
-				(double)wolf->raycaster.mapx) * wolf->raycaster.deltadistx;
+		wolf->ray.stepx = -1;
+		wolf->ray.sidedistx = (wolf->ray.rposx -
+				(double)wolf->ray.mapx) * wolf->ray.ddistx;
 	}
 	else
 	{
-		wolf->raycaster.stepx = 1;
-		wolf->raycaster.sidedistx = ((double)wolf->raycaster.mapx + 1.0 -
-				wolf->raycaster.rayposx) * wolf->raycaster.deltadistx;
+		wolf->ray.stepx = 1;
+		wolf->ray.sidedistx = ((double)wolf->ray.mapx + 1.0 -
+				wolf->ray.rposx) * wolf->ray.ddistx;
 	}
-	if (wolf->raycaster.raydiry < 0)
+	if (wolf->ray.rdy < 0)
 	{
-		wolf->raycaster.stepy = -1;
-		wolf->raycaster.sidedisty = (wolf->raycaster.rayposy -
-				(double)wolf->raycaster.mapy) * wolf->raycaster.deltadisty;
+		wolf->ray.stepy = -1;
+		wolf->ray.sidedisty = (wolf->ray.rposy -
+				(double)wolf->ray.mapy) * wolf->ray.ddisty;
 	}
 	else
 	{
-		wolf->raycaster.stepy = 1;
-		wolf->raycaster.sidedisty = ((double)wolf->raycaster.mapy + 1.0 -
-				wolf->raycaster.rayposy) * wolf->raycaster.deltadisty;
+		wolf->ray.stepy = 1;
+		wolf->ray.sidedisty = ((double)wolf->ray.mapy + 1.0 -
+				wolf->ray.rposy) * wolf->ray.ddisty;
 	}
 }
 
 void		dda(t_wolf *wolf)
 {
-	wolf->raycaster.hit = 0;
-	while (wolf->raycaster.hit == 0)
+	wolf->ray.hit = 0;
+	while (wolf->ray.hit == 0)
 	{
-		if (wolf->raycaster.sidedistx < wolf->raycaster.sidedisty)
+		if (wolf->ray.sidedistx < wolf->ray.sidedisty)
 		{
-			wolf->raycaster.sidedistx += wolf->raycaster.deltadistx;
-			wolf->raycaster.mapx += wolf->raycaster.stepx;
-			wolf->raycaster.side = 0;
+			wolf->ray.sidedistx += wolf->ray.ddistx;
+			wolf->ray.mapx += wolf->ray.stepx;
+			wolf->ray.side = 0;
 		}
 		else
 		{
-			wolf->raycaster.sidedisty += wolf->raycaster.deltadisty;
-			wolf->raycaster.mapy += wolf->raycaster.stepy;
-			wolf->raycaster.side = 1;
+			wolf->ray.sidedisty += wolf->ray.ddisty;
+			wolf->ray.mapy += wolf->ray.stepy;
+			wolf->ray.side = 1;
 		}
-		if (wolf->map->map[wolf->raycaster.mapx][wolf->raycaster.mapy] > 0)
-			wolf->raycaster.hit = 1;
+		if (wolf->map->map[wolf->ray.mapx][wolf->ray.mapy] > 0)
+			wolf->ray.hit = 1;
 	}
+}
+
+void		ray_utils(t_wolf *wolf)
+{
+	wolf->ray.rposx = wolf->ray.posx;
+	wolf->ray.rposy = wolf->ray.posy;
+	wolf->ray.rdx = wolf->ray.dirx + wolf->ray.planex * wolf->ray.camerax;
+	wolf->ray.rdy = wolf->ray.diry + wolf->ray.planey * wolf->ray.camerax;
+	wolf->ray.mapx = (int)wolf->ray.rposx;
+	wolf->ray.mapy = (int)wolf->ray.rposy;
+	wolf->ray.ddistx = sqrt(1 + (wolf->ray.rdy * wolf->ray.rdy)
+			/ (wolf->ray.rdx * wolf->ray.rdx));
+	wolf->ray.ddisty = sqrt(1 + (wolf->ray.rdx * wolf->ray.rdx)
+			/ (wolf->ray.rdy * wolf->ray.rdy));
 }
 
 void		init_ray(t_wolf *wolf, int x)
 {
-	wolf->raycaster.camerax = 2 * x / (double)WINDW_H - (double)WINDW_W / (double)WINDW_H;
-	wolf->raycaster.rayposx = wolf->raycaster.posx;
-	wolf->raycaster.rayposy = wolf->raycaster.posy;
-	wolf->raycaster.raydirx = wolf->raycaster.dirx + wolf->raycaster.planex * wolf->raycaster.camerax;
-	wolf->raycaster.raydiry = wolf->raycaster.diry + wolf->raycaster.planey * wolf->raycaster.camerax;
-	wolf->raycaster.mapx = (int)wolf->raycaster.rayposx;
-	wolf->raycaster.mapy = (int)wolf->raycaster.rayposy;
-	wolf->raycaster.deltadistx = sqrt(1 + (wolf->raycaster.raydiry * wolf->raycaster.raydiry) / (wolf->raycaster.raydirx * wolf->raycaster.raydirx));
-	wolf->raycaster.deltadisty = sqrt(1 + (wolf->raycaster.raydirx * wolf->raycaster.raydirx) / (wolf->raycaster.raydiry * wolf->raycaster.raydiry));
+	wolf->ray.camerax = 2 * x / (double)W_H - (double)W_W / (double)W_H;
+	ray_utils(wolf);
 	dda_init(wolf);
 	dda(wolf);
-	if (wolf->raycaster.side == 0)
+	if (wolf->ray.side == 0)
 	{
-		wolf->raycaster.perpwalldist = fabs((wolf->raycaster.mapx - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) / wolf->raycaster.raydirx);
-		wolf->raycaster.drawwall = fabs((wolf->raycaster.mapx - 0.3 - wolf->raycaster.rayposx + (1.0 - wolf->raycaster.stepx) / 2) / wolf->raycaster.raydirx);
+		wolf->ray.pwd = fabs((wolf->ray.mapx - wolf->ray.rposx
+				+ (1.0 - wolf->ray.stepx) / 2) / wolf->ray.rdx);
+		wolf->ray.drawwall = fabs((wolf->ray.mapx - 0.3 - wolf->ray.rposx
+				+ (1.0 - wolf->ray.stepx) / 2) / wolf->ray.rdx);
 	}
 	else
 	{
-		wolf->raycaster.perpwalldist = fabs((wolf->raycaster.mapy - wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) / wolf->raycaster.raydiry);
-		wolf->raycaster.drawwall = fabs((wolf->raycaster.mapy - 0.3 - wolf->raycaster.rayposy + (1.0 - wolf->raycaster.stepy) / 2) / wolf->raycaster.raydiry);
+		wolf->ray.pwd = fabs((wolf->ray.mapy - wolf->ray.rposy +
+				(1.0 - wolf->ray.stepy) / 2) / wolf->ray.rdy);
+		wolf->ray.drawwall = fabs((wolf->ray.mapy - 0.3 - wolf->ray.rposy
+				+ (1.0 - wolf->ray.stepy) / 2) / wolf->ray.rdy);
 	}
 }
 
 void		raycast(t_wolf *wolf)
 {
-	wolf->raycaster.x = -1;
-	while (++wolf->raycaster.x < WINDW_W + 1)
+	wolf->ray.x = -1;
+	while (++wolf->ray.x < W_W + 1)
 	{
-		init_ray(wolf, wolf->raycaster.x);
-		wolf->raycaster.lineheight = abs((int)(WINDW_H /
-				wolf->raycaster.perpwalldist));
-		wolf->raycaster.drawstart = ((-wolf->raycaster.lineheight))
-									/ 2 + WINDW_H / 2;
-		if (wolf->raycaster.drawstart < 0)
-			wolf->raycaster.drawstart = 0;
-		wolf->raycaster.drawend = wolf->raycaster.lineheight / 2 + WINDW_H / 2;
-		if (wolf->raycaster.drawend >= WINDW_H)
-			wolf->raycaster.drawend = WINDW_H - 1;
-		draw_wall(wolf->raycaster.x, wolf->raycaster.drawstart - 1,
-				wolf->raycaster.drawend, wolf);
+		init_ray(wolf, wolf->ray.x);
+		wolf->ray.lineheight = abs((int)(W_H /
+				wolf->ray.pwd));
+		wolf->ray.drawstart = ((-wolf->ray.lineheight))
+									/ 2 + W_H / 2;
+		if (wolf->ray.drawstart < 0)
+			wolf->ray.drawstart = 0;
+		wolf->ray.drawend = wolf->ray.lineheight / 2 + W_H / 2;
+		if (wolf->ray.drawend >= W_H)
+			wolf->ray.drawend = W_H - 1;
+		draw_wall(wolf->ray.x, wolf->ray.drawstart - 1,
+				wolf->ray.drawend, wolf);
 		draw_sight(wolf);
 	}
 }
