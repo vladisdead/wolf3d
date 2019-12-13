@@ -6,7 +6,7 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/12/13 16:49:56 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/12/13 17:11:03 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 void	update(t_wolf *wolf)
 {
-	SDL_Rect dstrect;
-
-	dstrect.x = 0;
-	dstrect.y = 0;
-	dstrect.w = wolf->surf->w;
-	dstrect.h = wolf->surf->h;
-	wolf->texture = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
-	SDL_RenderCopy(wolf->renderer, wolf->texture, NULL, &dstrect);
+	wolf->texture =  SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
+	SDL_RenderCopy(wolf->renderer, wolf->texture, NULL, NULL);
 	SDL_DestroyTexture(wolf->texture);
 	SDL_RenderPresent(wolf->renderer);
-	SDL_FillRect(wolf->surf, NULL, 0x00);
 }
 
 void	wolf3d_destroy_graphics(t_wolf *wolf)

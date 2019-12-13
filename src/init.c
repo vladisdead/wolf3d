@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 20:17:36 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 16:53:25 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/12/13 17:06:21 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ t_wolf			init_sdl(t_wmap *map)
 		exit(33);
 	if (!(sdl.surf = SDL_CreateRGBSurface(0, W_W, W_H, 32, 0, 0, 0, 0)))
 		exit(55);
-	if (!(sdl.texture = SDL_CreateTexture(sdl.renderer,
-			SDL_PIXELFORMAT_ABGR8888,
-			SDL_TEXTUREACCESS_STREAMING, W_W, W_H)))
-		exit(44);
 	sdl.map = map;
 	return (sdl);
 }
