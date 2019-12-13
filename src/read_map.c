@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:18:39 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 14:33:39 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 16:53:25 by cmicha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_wmap		*init_map(char *arg)
 	if (!count_data(arg, wolf_map))
 	{
 		wolf_map->map = interpret_buff(arg, wolf_map);
+		ft_strcpy(wolf_map->name, arg);
 		return (wolf_map);
 	}
 	free(wolf_map);
