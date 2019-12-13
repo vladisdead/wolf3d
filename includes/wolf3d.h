@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 15:15:32 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 15:18:35 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ typedef struct			s_wolf_raycaster
 typedef struct			s_wolf_m3d
 {
 	int					**map;
-	char				name[1024];
 	int					map_w;
 	int					map_h;
 	double				start_x;
