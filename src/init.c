@@ -28,7 +28,7 @@ SDL_Surface		*load_texture(char *path, t_wolf *wolf)
 	return (surface);
 }
 
-t_wolf			init_sdl(void)
+t_wolf			init_sdl(t_wmap *map)
 {
 	t_wolf sdl;
 
@@ -45,6 +45,7 @@ t_wolf			init_sdl(void)
 			SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING,
 			WINDW_W, WINDW_H)))
 		exit(44);
+	sdl.map = map;
 	return (sdl);
 }
 
