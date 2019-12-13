@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 16:53:25 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/12/13 18:21:00 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,12 @@ typedef struct			s_wolf_raycaster
 typedef struct			s_wolf_m3d
 {
 	int					**map;
-	char				name[1024];
 	int					map_w;
 	int					map_h;
 	double				start_x;
 	double				start_y;
 	int					fixable;
 	int					tofix;
-	int					map_width_differs;
 	int					walls;
 	int					pos;
 }						t_wmap;
@@ -118,6 +116,9 @@ typedef struct			s_wolf
 	int					texx;
 	int					texy;
 	int					d;
+	Uint8				*wav_buffer;
+	SDL_AudioDeviceID	device_id;
+
 }						t_wolf;
 
 void					raycast(t_wolf *wolf);
@@ -158,5 +159,6 @@ void					fps(t_wolf *wolf);
 void					fps_count(t_wolf *wolf);
 void					check_length(int x_check, int length, int fd);
 void					floor_ceil(t_wolf *wolf);
+int						init_music(t_wolf *wolf);
 
 #endif
