@@ -83,6 +83,7 @@ typedef struct			s_wolf_raycaster
 typedef struct			s_wolf_m3d
 {
 	int					**map;
+	char				name[1024];
 	int					map_w;
 	int					map_h;
 	double				start_x;
