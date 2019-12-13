@@ -6,7 +6,7 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/12/12 18:29:33 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/12/13 15:18:35 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ void	loop_hook(t_wolf *wolf)
 int		main(int argc, char **argv)
 {
 	t_wolf sdl;
+	t_wmap *map;
 
-	sdl = init_sdl();
-	sdl.map = run_map(argc, argv);
+	map = run_map(argc, argv);
+	sdl = init_sdl(map);
 	init_params_wolf(&sdl);
 	get_texture(&sdl);
 	loop_hook(&sdl);
