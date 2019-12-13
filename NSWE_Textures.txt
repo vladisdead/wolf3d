@@ -1,0 +1,66 @@
+init
+void			get_texture(t_wolf *wolf)
+{
+	if (!(wolf->brick = load_texture("../wall.bmp", wolf)))
+		exit(66);
+	if (!(wolf->floor = load_texture("../floor.bmp", wolf)))
+		exit(77);
+	if (!(wolf->ceil = load_texture("../ceil.bmp", wolf)))
+		exit(88);
+	if (!(wolf->southwall = load_texture("../southwall.bmp", wolf)))
+	    exit(99);
+    if (!(wolf->northwall = load_texture("../northwall.bmp", wolf)))
+        exit(109);
+    if (!(wolf->eastwall = load_texture("../eastwall.bmp", wolf)))
+        exit(119);
+    if (!(wolf->westhwall = load_texture("../westwall.bmp", wolf)))
+        exit(129);
+}
+
+drawer
+void        nswe(int x, int start, int end, t_wolf *wolf)
+{
+    if (wolf->ray.side > 0 && wolf->ray.rdy > 0)
+    {
+        put_pixel(wolf->surf, x, start,
+                  read_pixel(wolf->eastwall, wolf->texx, wolf->texy));
+    }
+    else if (wolf->ray.side > 0 && wolf->ray.rdy < 0)
+    {
+        put_pixel(wolf->surf, x, start,
+                  read_pixel(wolf->westhwall, wolf->texx, wolf->texy));
+    }
+    else if (wolf->ray.side == 0 && wolf->ray.rdx > 0)
+    {
+        put_pixel(wolf->surf, x, start,
+                  read_pixel(wolf->southwall, wolf->texx, wolf->texy));
+    }
+    else if (wolf->ray.side == 0 && wolf->ray.rdx < 0)
+    {
+        put_pixel(wolf->surf, x, start,
+                  read_pixel(wolf->northwall, wolf->texx, wolf->texy));
+    }
+}
+
+void		draw_wall(int x, int start, int end, t_wolf *wolf)
+{
+	if (wolf->ray.side == 0)
+		wolf->ray.wallx = wolf->ray.rposy +
+				wolf->ray.pwd * wolf->ray.rdy;
+	else
+		wolf->ray.wallx = wolf->ray.rposx +
+				wolf->ray.pwd * wolf->ray.rdx;
+	wolf->ray.wallx -= floor(wolf->ray.wallx);
+	wolf->texx = (int)(wolf->ray.wallx * (double)T_W);
+	if (wolf->ray.side == 0 && wolf->ray.rdx > 0)
+		wolf->texx = T_W - wolf->texx - 1;
+	if (wolf->ray.side == 1 && wolf->ray.rdy < 0)
+		wolf->texx = T_W - wolf->texx - 1;
+	while (++start < end)
+	{
+		wolf->d = start * 256 - W_H * 128 +
+				wolf->ray.lineheight * 128;
+		wolf->texy = ((wolf->d * T_H) / wolf->ray.lineheight) / 256;
+		nswe(x, start, end, wolf);
+	}
+}
