@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 14:22:13 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 15:15:32 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void					loop_hook(t_wolf *wolf);
 void					draw_wall(int x, int start, int end, t_wolf *wolf);
 void					draw_sight(t_wolf *wolf);
 void					update(t_wolf *wolf);
-t_wolf					init_sdl(void);
+t_wolf					init_sdl(t_wmap *map);
 void					init_params_wolf(t_wolf *wolf);
 SDL_Surface				*load_texture(char *path, t_wolf *wolf);
 void					get_texture(t_wolf *wolf);
