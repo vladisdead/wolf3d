@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 20:17:36 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 18:20:28 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/14 12:39:47 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void			init_params_wolf(t_wolf *wolf)
 	wolf->ray.w_h = W_H;
 	wolf->quit = 1;
 	wolf->framenum = 0;
+	wolf->fps = 0;
+	wolf->fpscurrent = 0;
 }
 
 int				init_music(t_wolf *wolf)

@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:53:40 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 16:58:14 by cmicha           ###   ########.fr       */
+/*   Updated: 2019/12/13 19:53:12 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	fps_limit(Uint32 framelimit)
 	int		max;
 
 	ticks = SDL_GetTicks();
-	max = (1000 / 30);
+	max = (1000 / 70);
 	if (framelimit < ticks)
 		return ;
 	if (framelimit > ticks + max)
@@ -45,6 +45,6 @@ void	fps_count(t_wolf *wolf)
 void	fps(t_wolf *wolf)
 {
 	fps_limit(wolf->framelimit);
-	wolf->framelimit = SDL_GetTicks() + (1000 / 30);
+	wolf->framelimit = SDL_GetTicks() + (1000 / 70);
 	fps_count(wolf);
 }
