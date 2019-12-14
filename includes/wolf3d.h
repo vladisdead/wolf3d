@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 18:21:00 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/13 20:08:17 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <dirent.h>
-# define W_W 800
+# define W_W 1200
 # define W_H 800
 # define T_W 64
 # define T_H 64
