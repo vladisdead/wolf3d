@@ -3,65 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/03 17:33:42 by cmicha            #+#    #+#             */
-/*   Updated: 2019/06/10 16:21:33 by cmicha           ###   ########.fr       */
+/*   Created: 2019/09/01 16:21:58 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_new_line(char **s, char **line, int fd, int ret)
+static t_fd_list	*new_t_fd_list(int fd)
 {
-	char	*tmp;
-	int		len;
+	t_fd_list	*temp;
 
-	len = 0;
-	while (s[fd][len] != '\n' && s[fd][len] != '\0')
-		len++;
-	if (s[fd][len] == '\n')
+	temp = (t_fd_list*)malloc(sizeof(t_fd_list));
+	temp->fd = fd;
+	temp->str = ft_strnew(0);
+	temp->next = NULL;
+	temp->prev = NULL;
+	return (temp);
+}
+
+static int			del_list(t_fd_list **temp, t_fd_list **start_list)
+{
+	t_fd_list *next;
+
+	if (*temp == *start_list)
+		*start_list = NULL;
+	next = (*temp)->next;
+	if ((*temp)->prev)
+		(*temp)->prev->next = (*temp)->next;
+	if ((*temp)->next)
+		(*temp)->next->prev = (*temp)->prev;
+	free((*temp)->str);
+	free(*temp);
+	*temp = next;
+	return (-1);
+}
+
+static t_fd_list	*find_t_fd_list(const int fd, t_fd_list **start_list)
+{
+	t_fd_list			*temp;
+
+	temp = *start_list;
+	if (!*start_list)
+		*start_list = new_t_fd_list(fd);
+	temp = *start_list;
+	while (temp->next && temp->fd != fd)
+		temp = temp->next;
+	if (!(temp->fd == fd))
 	{
-		*line = ft_strsub(s[fd], 0, len);
-		tmp = ft_strdup(s[fd] + len + 1);
-		free(s[fd]);
-		s[fd] = tmp;
-		if (s[fd][0] == '\0')
-			ft_strdel(&s[fd]);
+		temp->next = new_t_fd_list(fd);
+		temp->next->prev = temp;
+		temp = temp->next;
 	}
-	else if (s[fd][len] == '\0')
+	return (temp);
+}
+
+static int			read_to_list(t_fd_list *temp, t_fd_list **start_list)
+{
+	char			buff[BUFF_SIZE + 1];
+	char			*temp_str;
+	int				ch_read;
+
+	ft_memset(buff, '\0', BUFF_SIZE);
+	while ((ch_read = read(temp->fd, buff, BUFF_SIZE)))
 	{
-		if (ret == BUFF_SIZE)
-			return (get_next_line(fd, line));
-		*line = ft_strdup(s[fd]);
-		ft_strdel(&s[fd]);
+		if (ch_read < 0)
+			return (del_list(&temp, start_list));
+		buff[ch_read] = '\0';
+		temp_str = ft_strjoin(temp->str, buff);
+		free(temp->str);
+		temp->str = temp_str;
+		if (!temp_str)
+			return (del_list(&temp, start_list));
+		if (ft_strchr(buff, '\n'))
+			break ;
 	}
 	return (1);
 }
 
-int		get_next_line(const int fd, char **line)
+int					get_next_line(const int fd, char **line)
 {
-	static char	*s[255];
-	char		buf[BUFF_SIZE + 1];
-	char		*tmp;
-	int			ret;
+	t_fd_list			*temp;
+	char				*temp_str;
+	char				*ptr;
+	static t_fd_list	*start_list;
 
-	if (fd < 0 || line == NULL)
+	ptr = NULL;
+	if (fd < 0 || !line || BUFF_SIZE < 0)
 		return (-1);
-	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	temp = find_t_fd_list(fd, &start_list);
+	if (read_to_list(temp, &start_list) == -1)
+		return (-1);
+	if (!(*temp->str))
+		return (del_list(&temp, &start_list) + 1);
+	temp_str = temp->str;
+	if ((ptr = ft_strchr(temp_str, '\n')))
 	{
-		buf[ret] = '\0';
-		if (s[fd] == NULL)
-			s[fd] = ft_strnew(1);
-		tmp = ft_strjoin(s[fd], buf);
-		free(s[fd]);
-		s[fd] = tmp;
-		if (ft_strchr(buf, '\n'))
-			break ;
+		*ptr = '\0';
+		temp->str = ft_strdup(ptr + 1);
 	}
-	if (ret < 0)
-		return (-1);
-	else if (ret == 0 && (s[fd] == NULL || s[fd][0] == '\0'))
-		return (0);
-	return (ft_new_line(s, line, fd, ret));
+	else
+		temp->str = ft_strdup("\0");
+	if (*temp_str || ptr)
+		*line = ft_strdup(temp_str);
+	free(temp_str);
+	return (1);
 }

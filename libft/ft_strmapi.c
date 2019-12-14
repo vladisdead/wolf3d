@@ -3,39 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 21:33:00 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/18 17:23:16 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/21 15:20:46 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*t;
-	int		i;
-	int		y;
+	unsigned int	i;
+	char			*fresh;
 
-	y = 0;
+	if (!s || !f)
+		return (NULL);
 	i = 0;
-	if (s && f)
+	fresh = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (fresh == NULL)
+		return (NULL);
+	while (*s)
 	{
-		while (s[i] != '\0')
+		if (!(fresh[i] = f(i, *s)))
 		{
-			i++;
-		}
-		t = ft_memalloc(i + 1);
-		if (t == NULL)
+			ft_strdel(&fresh);
 			return (NULL);
-		while (y < i)
-		{
-			t[y] = f(y, s[y]);
-			y++;
 		}
-		t[y] = '\0';
-		return (t);
+		s++;
+		i++;
 	}
-	return (NULL);
+	fresh[i] = '\0';
+	return (fresh);
 }

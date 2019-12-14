@@ -3,105 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 21:44:30 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/18 18:05:43 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/24 12:33:23 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int				snt(const char *s, char c, int g)
+static	size_t	sizecount(const char *s, char c)
 {
-	int		i;
-	int		j;
-	int		y;
+	size_t	word_len;
 
-	i = 0;
-	j = 0;
-	while (j <= g && s[i] != '\0')
+	word_len = 0;
+	while (*s != c && *s != '\0')
 	{
-		y = 0;
-		if ((s[i] != c && s[i + 1] == c) || (s[i] != c &&
-			s[i + 1] == '\0'))
-			j++;
-		if (s[i] != c)
-			y++;
-		i++;
+		word_len++;
+		s++;
 	}
-	return (y);
+	word_len++;
+	return (word_len);
 }
 
-static	void			ft_memwdel(unsigned char **d, int g)
+static	size_t	wordcount(const char *s, char c)
 {
-	int		i;
+	size_t	word;
+	int		flag;
 
-	i = 0;
-	while (i <= g)
+	flag = 0;
+	word = 0;
+	while (*s)
 	{
-		free(d[i]);
-		d[i] = NULL;
-		i++;
-	}
-	free(d);
-	d = NULL;
-}
-
-static unsigned char	**ft_memstr(const char *s, char c)
-{
-	int				i;
-	int				j;
-	unsigned char	**d;
-
-	i = -1;
-	j = 0;
-	if (!s || !c)
-		return (NULL);
-	while (s[++i] != '\0')
-	{
-		if ((s[i] != c && s[i + 1] == c) || (s[i] != c && s[i + 1] == '\0'))
-			j++;
-	}
-	i = -1;
-	d = (unsigned char**)malloc(sizeof(unsigned char*) * (j + 1));
-	if (d == NULL)
-		return (NULL);
-	while (++i < j)
-	{
-		d[i] = (unsigned char*)malloc(sizeof(unsigned char*) *
-				(snt(s, c, i) + 1));
-		if (d[i] == NULL)
-			ft_memwdel(d, i);
-	}
-	return (d);
-}
-
-char					**ft_strsplit(char const *s, char c)
-{
-	int				i;
-	int				h;
-	int				r;
-	unsigned char	**d;
-
-	r = 0;
-	d = ft_memstr(s, c);
-	if (s && c && d)
-	{
-		i = 0;
-		while (s[i] != '\0' && snt(s, c, 0) > 0)
+		if (*s == c)
+			s++;
+		else if (*s != c && flag == 0)
 		{
-			h = -1;
-			while (s[i] == c && s[i] != '\0')
-				i++;
-			while (s[i] != c && s[i] != '\0')
-				d[r][++h] = ((unsigned char*)s)[i++];
-			d[r++][++h] = '\0';
-			while (s[i] == c && s[i] != '\0')
-				i++;
+			flag = 1;
+			while (*s != c && *s)
+			{
+				s++;
+			}
+			if (*s == c || !*s)
+			{
+				word++;
+				flag = 0;
+			}
 		}
-		d[r] = 0;
-		return ((char**)d);
 	}
-	return (NULL);
+	word++;
+	return (word);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	char	**result;
+	size_t	i;
+	size_t	counter;
+
+	i = 0;
+	if (!s || !(result = (char**)malloc((wordcount(s, c)) * sizeof(char*))))
+		return (NULL);
+	while (*s)
+	{
+		if (*s != c && !(counter = 0))
+		{
+			if (!(result[i] = (char*)malloc((sizecount(s, c)) * sizeof(char))))
+			{
+				ft_delarr((void**)result);
+				return (NULL);
+			}
+			while (*s != c && *s)
+				result[i][counter++] = *s++;
+			result[i++][counter] = '\0';
+		}
+		else
+			s++;
+	}
+	result[i] = NULL;
+	return (result);
 }

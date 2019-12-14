@@ -3,26 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/12 16:44:12 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/18 16:00:23 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/13 16:54:04 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *d, const void *s, size_t n)
+void	*ft_memmove(void *str1, const void *str2, size_t n)
 {
-	size_t			i;
-	unsigned char	*b;
+	unsigned char		*str3;
+	unsigned char const *str4;
+	size_t				len;
 
-	b = (unsigned char*)malloc(sizeof(unsigned char*) * n);
-	i = 0;
-	if (b)
+	if (!str1 && !str2)
+		return (NULL);
+	str3 = str1;
+	str4 = str2;
+	len = 0;
+	if (str3 > str4)
 	{
-		ft_memcpy(b, s, n);
-		ft_memcpy(d, b, n);
+		while (n-- > 0)
+			str3[n] = str4[n];
 	}
-	return (d);
+	else
+	{
+		while (len < n)
+		{
+			str3[len] = str4[len];
+			len++;
+		}
+	}
+	return (str1);
 }

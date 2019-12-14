@@ -3,40 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 21:52:47 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/18 18:41:39 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/21 17:36:04 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static	int	checklenwwsps(char const *s)
 {
-	char	*f;
-	int		i;
-	int		y;
-	int		j;
+	int len;
 
-	i = 0;
-	y = -1;
+	if (!s)
+		return (0);
+	len = 0;
+	while (*s && (*s == ' ' || *s == '\t' || *s == '\n'))
+		s++;
+	while (*s)
+	{
+		s++;
+		len++;
+	}
+	if (*s == '\0')
+		s--;
+	while (*s && (*s == ' ' || *s == '\t' || *s == '\n'))
+	{
+		s--;
+		len--;
+	}
+	return (len);
+}
+
+char		*ft_strtrim(char const *s)
+{
+	int		i;
+	int		ii;
+	char	*copy;
+
 	if (!s)
 		return (NULL);
-	j = ft_strlen(s) - 1;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	if (s[i] != '\0')
-		while (s[j] == ' ' || s[j] == '\n' || s[j] == '\t')
-			j--;
-	else
-		j--;
-	j++;
-	f = (char*)malloc(sizeof(char*) * (j - i + 1));
-	if (f == NULL)
+	i = checklenwwsps(s);
+	if (i < 0)
+		i = 0;
+	ii = i;
+	copy = (char*)malloc((i + 1) * sizeof(char));
+	if (copy == NULL)
 		return (NULL);
-	while (i <= j)
-		f[++y] = (char)s[i++];
-	f[y] = '\0';
-	return (f);
+	while (*s && (*s == ' ' || *s == '\t' || *s == '\n'))
+		s++;
+	while (*s && i > 0)
+	{
+		*copy = *s;
+		i--;
+		copy++;
+		s++;
+	}
+	*copy = '\0';
+	copy = copy - ii;
+	return (copy);
 }

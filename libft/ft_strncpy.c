@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   strncpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 21:36:57 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/12 18:53:00 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/10 18:42:02 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *destptr, char *srcptr, size_t num)
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	int i;
+	size_t i;
 
 	i = 0;
-	while (i < (int)num)
+	while (i < n && src[i])
 	{
-		if (srcptr[i] == '\0')
-		{
-			while (i < (int)num)
-			{
-				destptr[i] = '\0';
-				i++;
-			}
-		}
-		else
-		{
-			destptr[i] = srcptr[i];
-			i++;
-		}
+		dest[i] = src[i];
+		i++;
 	}
-	return (destptr);
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

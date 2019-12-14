@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_delarr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 17:28:02 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
+/*   Created: 2019/05/05 13:26:21 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/08/21 13:57:34 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+void	ft_delarr(void **arr)
 {
-	size_t	len;
+	size_t	i;
 
-	len = ft_strlen(src);
-	while (*src)
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
 	{
-		*dest++ = *src++;
+		free(arr[i]);
+		i++;
 	}
-	*dest = *src;
-	dest = dest - len;
-	return (dest);
+	ft_memdel(arr);
 }

@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 21:55:21 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/11 22:28:35 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/12 18:51:43 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int character)
+int	ft_toupper(int c)
 {
-	if (character > 96 && character < 123)
-		return (character - ('a' - 'A'));
-	else
-		return (character);
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	return (c);
 }

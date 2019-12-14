@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 17:28:02 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
+/*   Created: 2019/05/06 13:56:05 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/05/06 14:08:00 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+long long	ft_power(int i, int power)
 {
-	size_t	len;
+	long long	result;
 
-	len = ft_strlen(src);
-	while (*src)
+	result = 1;
+	if (power == 0)
+		return (1);
+	if (i == 0)
+		return (0);
+	while (power > 0)
 	{
-		*dest++ = *src++;
+		result = result * i;
+		power--;
 	}
-	*dest = *src;
-	dest = dest - len;
-	return (dest);
+	return (result);
 }

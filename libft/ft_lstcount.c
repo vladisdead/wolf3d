@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstcount.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 17:28:02 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
+/*   Created: 2019/05/07 17:36:26 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/05/07 17:59:53 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+size_t	ft_lstcount(t_list *alst)
 {
-	size_t	len;
+	size_t	l;
 
-	len = ft_strlen(src);
-	while (*src)
+	l = 0;
+	if (!alst)
+		return (0);
+	while (alst)
 	{
-		*dest++ = *src++;
+		l++;
+		alst = alst->next;
 	}
-	*dest = *src;
-	dest = dest - len;
-	return (dest);
+	return (l);
 }

@@ -3,112 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 20:08:13 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/16 15:22:46 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/26 17:53:31 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		gig1(int n)
+static	int		countdigits(int n)
 {
-	long		i;
-	long		y;
+	size_t	i;
+	int		digit;
 
-	if (n < 0)
-		n = n * (-1);
+	digit = 0;
 	i = 0;
-	y = 1;
-	while (n > 0)
+	if (n == 0)
+		return (1);
+	if (n < 0)
 	{
-		n = n / 10;
+		n = n * -1;
 		i++;
-		y = y * 10;
+	}
+	while (n != 0)
+	{
+		if ((n - digit) % 10 != 0)
+			digit++;
+		else
+		{
+			i++;
+			n = (n - digit) / 10;
+			digit = 0;
+		}
 	}
 	return (i);
 }
 
-static	int		gig2(int n)
+static	int		capturedigits(int n)
 {
-	long		i;
-	long		y;
+	int digit;
 
-	if (n < 0)
-		n = n * (-1);
-	i = 0;
-	y = 1;
-	while (n > 0)
-	{
-		n = n / 10;
-		i++;
-		y = y * 10;
-	}
-	y = y / 10;
-	return (y);
-}
-
-static	char	*rer(int n, int i, int j, int y)
-{
-	char	*s;
-
-	s = ft_memalloc(i + 2);
-	if (s == NULL)
-		return (NULL);
-	if (n < 0)
-	{
-		s[j] = '-';
-		j++;
-		i++;
-		n = n * (-1);
-	}
-	while (j < i)
-	{
-		s[j] = n / y + 48;
-		j++;
-		n = n % y;
-		y = y / 10;
-	}
-	s[j] = '\0';
-	return (s);
-}
-
-static	char	*ft_zero(void)
-{
-	char	*d;
-
-	d = ft_memalloc(2);
-	if (d == NULL)
-		return (NULL);
-	d[0] = '0';
-	d[1] = '\0';
-	return (d);
+	digit = 0;
+	while ((n - digit) % 10 != 0)
+		digit++;
+	return (digit);
 }
 
 char			*ft_itoa(int n)
 {
-	char		*s;
-	long		i;
-	long		y;
-	long		j;
+	char	*result;
+	int		len;
 
-	j = 0;
-	if (n < -2147483647)
+	len = countdigits(n);
+	result = (char*)malloc((len + 1) * sizeof(char));
+	if (result == NULL)
+		return (NULL);
+	if (n < 0)
 	{
-		i = gig1(n + 1);
-		y = gig2(n + 1);
-		s = rer(n + 1, i, j, y);
-		s[10] = '8';
+		n = n * -1;
+		result[0] = '-';
 	}
-	else
+	result[len] = '\0';
+	len--;
+	if (n == 0)
+		result[0] = 0 + '0';
+	while (n != 0)
 	{
-		i = gig1(n);
-		y = gig2(n);
-		if (n == 0)
-			s = ft_zero();
-		else
-			s = rer(n, i, j, y);
+		result[len] = capturedigits(n) + '0';
+		n = (n - capturedigits(n)) / 10;
+		len--;
 	}
-	return (s);
+	return (result);
 }

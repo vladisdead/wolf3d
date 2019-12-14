@@ -3,39 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/12 16:45:16 by mriley            #+#    #+#             */
-/*   Updated: 2019/04/18 16:01:34 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/13 15:19:42 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *d, const void *s, int c, size_t n)
+void	*ft_memccpy(void *str1, const void *str2, int c, size_t n)
 {
-	size_t				i;
-	unsigned char		*st;
-	unsigned char		*dt;
-	unsigned char		h;
+	unsigned char		*str3;
+	unsigned char const	*str4;
+	unsigned char		t;
 
-	h = (unsigned char)c;
-	st = (unsigned char *)s;
-	dt = (unsigned char *)d;
-	i = 0;
-	while (i < n)
+	t = (unsigned)c;
+	str3 = (unsigned char*)str1;
+	str4 = (unsigned const char*)str2;
+	while (n != 0)
 	{
-		if (st[i] == h)
+		if (*str4 == t)
 		{
-			dt[i] = st[i];
-			i++;
-			return ((void *)&(dt[i]));
+			*str3++ = *str4++;
+			return (str3);
 		}
-		else
-		{
-			dt[i] = st[i];
-			i++;
-		}
+		*str3++ = *str4++;
+		n--;
 	}
 	return (NULL);
 }

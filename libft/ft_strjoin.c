@@ -3,36 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 21:28:01 by mriley            #+#    #+#             */
-/*   Updated: 2019/05/12 17:55:12 by mriley           ###   ########.fr       */
+/*   Created: 2019/04/21 16:48:54 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static	size_t	slen(char const *s1, char const *s2)
 {
-	size_t			s1_len;
-	size_t			s2_len;
-	size_t			summ_len;
-	char			*concat;
+	size_t len;
 
-	if (s1 && s2)
+	len = ft_strlen(s1) + ft_strlen(s2);
+	return (len);
+}
+
+char			*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*result;
+	int		len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len = slen(s1, s2) + 1;
+	result = (char*)malloc((len) * sizeof(char));
+	if (result == NULL)
+		return (NULL);
+	while (*s1)
 	{
-		s1_len = ft_strlen(s1);
-		s2_len = ft_strlen(s2);
-		if ((summ_len = s1_len + s2_len) + 1 == 0)
-			return (0);
-		concat = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
-		if (concat)
-		{
-			ft_memcpy(concat, s1, s1_len);
-			ft_memcpy(concat + s1_len, s2, s2_len);
-			concat[s1_len + s2_len] = 0;
-			return (concat);
-		}
+		*result = *s1;
+		result++;
+		s1++;
 	}
-	return (0);
+	while (*s2)
+	{
+		*result = *s2;
+		result++;
+		s2++;
+	}
+	*result = '\0';
+	while (len-- > 1)
+		result--;
+	return (result);
 }

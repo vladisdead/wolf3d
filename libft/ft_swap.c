@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cyuriko <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 17:28:02 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 14:17:33 by cyuriko          ###   ########.fr       */
+/*   Created: 2019/08/21 19:41:22 by cyuriko           #+#    #+#             */
+/*   Updated: 2019/08/21 19:41:22 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+void	ft_swap(int *a, int *b)
 {
-	size_t	len;
+	int c;
 
-	len = ft_strlen(src);
-	while (*src)
-	{
-		*dest++ = *src++;
-	}
-	*dest = *src;
-	dest = dest - len;
-	return (dest);
+	c = *a;
+	*a = *b;
+	*b = c;
 }
