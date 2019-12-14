@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 20:17:36 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 12:39:47 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/14 16:26:59 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ t_wolf			init_sdl(t_wmap *map)
 	return (sdl);
 }
 
-void			get_texture(t_wolf *wolf)
-{
-	if (!(wolf->brick = load_texture("../wall.bmp", wolf)))
-		exit(66);
-	if (!(wolf->floor = load_texture("../floor.bmp", wolf)))
-		exit(77);
-	if (!(wolf->ceil = load_texture("../ceil.bmp", wolf)))
-		exit(88);
-}
-
 void			init_params_wolf(t_wolf *wolf)
 {
 	wolf->ray.posx = wolf->map->start_y + 0.5;
@@ -85,4 +75,22 @@ int				init_music(t_wolf *wolf)
 	SDL_QueueAudio(wolf->device_id, wolf->wav_buffer, wav_length);
 	SDL_PauseAudioDevice(wolf->device_id, 0);
 	return (0);
+}
+
+void			get_texture(t_wolf *wolf)
+{
+	if (!(wolf->brick = load_texture("../wall.bmp", wolf)))
+		exit(66);
+	if (!(wolf->floor = load_texture("../floor.bmp", wolf)))
+		exit(77);
+	if (!(wolf->ceil = load_texture("../ceil.bmp", wolf)))
+		exit(88);
+	if (!(wolf->southwall = load_texture("../resources/wall_1.bmp", wolf)))
+		exit(99);
+	if (!(wolf->northwall = load_texture("../resources/wall_2.bmp", wolf)))
+		exit(109);
+	if (!(wolf->eastwall = load_texture("../resources/wall_3.bmp", wolf)))
+		exit(119);
+	if (!(wolf->westhwall = load_texture("../resources/wall_4.bmp", wolf)))
+		exit(129);
 }

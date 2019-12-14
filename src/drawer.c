@@ -6,20 +6,11 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:15:49 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 12:24:22 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/14 16:40:34 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void		put_pixel(SDL_Surface *surf, const int x, const int y, Uint32 color)
-{
-	Uint32		*pixels;
-
-	pixels = (Uint32 *)surf->pixels;
-	if (x >= 0 && y >= 0 && x < surf->w && y < surf->h)
-		pixels[(y * surf->w) + x] = color;
-}
 
 Uint32		read_pixel(SDL_Surface *surface, const int x, const int y)
 {
@@ -47,11 +38,9 @@ Uint32		read_pixel(SDL_Surface *surface, const int x, const int y)
 void		draw_wall(int x, int start, int end, t_wolf *wolf)
 {
 	if (wolf->ray.side == 0)
-		wolf->ray.wallx = wolf->ray.rposy +
-				wolf->ray.pwd * wolf->ray.rdy;
+		wolf->ray.wallx = wolf->ray.rposy + wolf->ray.pwd * wolf->ray.rdy;
 	else
-		wolf->ray.wallx = wolf->ray.rposx +
-				wolf->ray.pwd * wolf->ray.rdx;
+		wolf->ray.wallx = wolf->ray.rposx + wolf->ray.pwd * wolf->ray.rdx;
 	wolf->ray.wallx -= floor(wolf->ray.wallx);
 	wolf->texx = (int)(wolf->ray.wallx * (double)T_W);
 	if (wolf->ray.side == 0 && wolf->ray.rdx > 0)
@@ -60,11 +49,9 @@ void		draw_wall(int x, int start, int end, t_wolf *wolf)
 		wolf->texx = T_W - wolf->texx - 1;
 	while (++start < end)
 	{
-		wolf->d = start * 256 - W_H * 128 +
-				wolf->ray.lineheight * 128;
+		wolf->d = start * 256 - W_H * 128 + wolf->ray.lineheight * 128;
 		wolf->texy = ((wolf->d * T_H) / wolf->ray.lineheight) / 256;
-		put_pixel(wolf->surf, x, start,
-				read_pixel(wolf->brick, wolf->texx, wolf->texy));
+		nswe(x, start, end, wolf);
 	}
 }
 
@@ -122,4 +109,20 @@ void		draw_sight(t_wolf *wolf)
 				read_pixel(wolf->ceil, wolf->ray.ftexx,
 						wolf->ray.ftexy));
 	}
+}
+
+void		nswe(int x, int start, int end, t_wolf *wolf)
+{
+	if (wolf->ray.side > 0 && wolf->ray.rdy > 0)
+		put_pixel(wolf->surf, x, start, read_pixel(wolf->eastwall,
+				wolf->texx, wolf->texy));
+	else if (wolf->ray.side > 0 && wolf->ray.rdy < 0)
+		put_pixel(wolf->surf, x, start, read_pixel(wolf->westhwall,
+				wolf->texx, wolf->texy));
+	else if (wolf->ray.side == 0 && wolf->ray.rdx > 0)
+		put_pixel(wolf->surf, x, start, read_pixel(wolf->southwall,
+				wolf->texx, wolf->texy));
+	else if (wolf->ray.side == 0 && wolf->ray.rdx < 0)
+		put_pixel(wolf->surf, x, start, read_pixel(wolf->northwall,
+				wolf->texx, wolf->texy));
 }

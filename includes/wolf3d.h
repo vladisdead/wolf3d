@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/13 20:08:17 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/14 16:29:47 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ typedef struct			s_wolf
 	int					d;
 	Uint8				*wav_buffer;
 	SDL_AudioDeviceID	device_id;
+	SDL_Surface			*southwall;
+	SDL_Surface			*northwall;
+	SDL_Surface			*westhwall;
+	SDL_Surface			*eastwall;
 
 }						t_wolf;
 
@@ -153,12 +157,15 @@ void					update(t_wolf *wolf);
 t_wolf					init_sdl(t_wmap *map);
 void					init_params_wolf(t_wolf *wolf);
 SDL_Surface				*load_texture(char *path, t_wolf *wolf);
-void					get_texture(t_wolf *wolf);
 void					fps_limit(Uint32 framelimit);
 void					fps(t_wolf *wolf);
 void					fps_count(t_wolf *wolf);
 void					check_length(int x_check, int length, int fd);
 void					floor_ceil(t_wolf *wolf);
 int						init_music(t_wolf *wolf);
+void					get_texture(t_wolf *wolf);
+void					nswe(int x, int start, int end, t_wolf *wolf);
+void					put_pixel(SDL_Surface *surf, const int x, const int y,
+		Uint32 color);
 
 #endif

@@ -6,11 +6,20 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/12/13 18:19:42 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/14 16:40:13 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	put_pixel(SDL_Surface *surf, const int x, const int y, Uint32 color)
+{
+	Uint32		*pixels;
+
+	pixels = (Uint32 *)surf->pixels;
+	if (x >= 0 && y >= 0 && x < surf->w && y < surf->h)
+		pixels[(y * surf->w) + x] = color;
+}
 
 void	update(t_wolf *wolf)
 {
