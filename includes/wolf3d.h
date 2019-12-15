@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:27:01 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 16:29:47 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/14 17:16:52 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <dirent.h>
-# define W_W 1200
+# define W_W 800
 # define W_H 800
 # define T_W 64
 # define T_H 64
@@ -164,7 +164,7 @@ void					check_length(int x_check, int length, int fd);
 void					floor_ceil(t_wolf *wolf);
 int						init_music(t_wolf *wolf);
 void					get_texture(t_wolf *wolf);
-void					nswe(int x, int start, int end, t_wolf *wolf);
+void					nswe(int x, int start, t_wolf *wolf);
 void					put_pixel(SDL_Surface *surf, const int x, const int y,
 		Uint32 color);
 

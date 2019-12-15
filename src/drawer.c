@@ -6,7 +6,7 @@
 /*   By: cyuriko <cyuriko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:15:49 by cyuriko           #+#    #+#             */
-/*   Updated: 2019/12/14 16:40:34 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/14 17:17:12 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		draw_wall(int x, int start, int end, t_wolf *wolf)
 	{
 		wolf->d = start * 256 - W_H * 128 + wolf->ray.lineheight * 128;
 		wolf->texy = ((wolf->d * T_H) / wolf->ray.lineheight) / 256;
-		nswe(x, start, end, wolf);
+		nswe(x, start, wolf);
 	}
 }
 
@@ -90,7 +90,7 @@ void		draw_sight(t_wolf *wolf)
 	wolf->ray.dplayer = 0.0;
 	if (wolf->ray.drawend < 0)
 		wolf->ray.drawend = W_H;
-	wolf->ray.y = wolf->ray.drawend - 1;
+	wolf->ray.y = wolf->ray.drawend;
 	while (++wolf->ray.y < W_H)
 	{
 		wolf->ray.cdist = W_H / (2.0 * wolf->ray.y - W_H);
@@ -111,7 +111,7 @@ void		draw_sight(t_wolf *wolf)
 	}
 }
 
-void		nswe(int x, int start, int end, t_wolf *wolf)
+void		nswe(int x, int start, t_wolf *wolf)
 {
 	if (wolf->ray.side > 0 && wolf->ray.rdy > 0)
 		put_pixel(wolf->surf, x, start, read_pixel(wolf->eastwall,

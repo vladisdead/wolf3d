@@ -57,7 +57,7 @@ void		dda(t_wolf *wolf)
 			wolf->ray.mapy += wolf->ray.stepy;
 			wolf->ray.side = 1;
 		}
-		if (wolf->map->map[wolf->ray.mapx][wolf->ray.mapy] > 0)
+		if (wolf->map->map[wolf->ray.mapx][wolf->ray.mapy] == 1)
 			wolf->ray.hit = 1;
 	}
 }

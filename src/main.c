@@ -6,7 +6,7 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:23:36 by cmicha            #+#    #+#             */
-/*   Updated: 2019/12/14 16:40:13 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/15 16:46:54 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ void	put_pixel(SDL_Surface *surf, const int x, const int y, Uint32 color)
 
 void	update(t_wolf *wolf)
 {
-	wolf->texture = SDL_CreateTextureFromSurface(wolf->renderer, wolf->surf);
+	if (!(wolf->texture = SDL_CreateTextureFromSurface(wolf->renderer,
+			wolf->surf)))
+	{
+		wolf3d_destroy_graphics(wolf);
+		print_error(6);
+	}
 	SDL_RenderCopy(wolf->renderer, wolf->texture, NULL, NULL);
 	SDL_DestroyTexture(wolf->texture);
 	SDL_RenderPresent(wolf->renderer);
@@ -40,6 +45,7 @@ void	wolf3d_destroy_graphics(t_wolf *wolf)
 	SDL_CloseAudioDevice(wolf->device_id);
 	SDL_FreeWAV(wolf->wav_buffer);
 	SDL_Quit();
+	exit(0);
 }
 
 void	loop_hook(t_wolf *wolf)

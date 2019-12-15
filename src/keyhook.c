@@ -6,7 +6,7 @@
 /*   By: cmicha <cmicha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 16:05:08 by cmicha            #+#    #+#             */
-/*   Updated: 2019/12/14 12:46:34 by cyuriko          ###   ########.fr       */
+/*   Updated: 2019/12/15 17:45:33 by cyuriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	wolf3d_key_up(t_wolf *wolf)
 	if ((wolf->map->map[(int)(wolf->ray.posx + wolf->ray.dirx *
 	wolf->ray.ms)][(int)wolf->ray.posy]) != 1)
 	{
-		wolf->ray.posx += wolf->ray.dirx * wolf->ray.ms;
+		wolf->ray.posx += (wolf->ray.dirx * 0.1);
 	}
 	if (wolf->map->map[(int)wolf->ray.posx][(int)(wolf->ray.posy
 	+ wolf->ray.diry * wolf->ray.ms)] != 1)
 	{
-		wolf->ray.posy += wolf->ray.diry * wolf->ray.ms;
+		wolf->ray.posy += (wolf->ray.diry * 0.1);
 	}
 }
 
@@ -30,10 +30,10 @@ void	wolf3d_key_down(t_wolf *wolf)
 {
 	if (wolf->map->map[(int)(wolf->ray.posx - wolf->ray.dirx *
 	wolf->ray.ms)][(int)wolf->ray.posy] != 1)
-		wolf->ray.posx -= wolf->ray.dirx * wolf->ray.ms;
+		wolf->ray.posx -= wolf->ray.dirx * 0.1;
 	if (wolf->map->map[(int)wolf->ray.posx][(int)(wolf->ray.posy -
 	wolf->ray.diry * wolf->ray.ms)] != 1)
-		wolf->ray.posy -= wolf->ray.diry * wolf->ray.ms;
+		wolf->ray.posy -= wolf->ray.diry * 0.1;
 }
 
 void	wolf3d_key_left(t_wolf *wolf)
